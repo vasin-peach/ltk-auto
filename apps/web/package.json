@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "test": "cypress run --passWithNoTests"
+    "test": "cypress run"
   },
   "dependencies": {
     "next": "13.0.0",
