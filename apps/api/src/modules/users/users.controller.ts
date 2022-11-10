@@ -8,7 +8,7 @@ import {
   Delete,
   VERSION_NEUTRAL,
 } from '@nestjs/common';
-import { UserService } from './user.service';
+import { UsersService } from './users.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import {
@@ -28,15 +28,15 @@ import {
   ResponseManyDto,
 } from '../../common/dto/response.dto';
 
-@ApiTags('user')
+@ApiTags('users')
 @ApiBearerAuth()
 @ApiExtraModels(ResponseOneDto, ResponseManyDto, User)
 @Controller({
-  path: 'user',
+  path: 'users',
   version: VERSION_NEUTRAL,
 })
-export class UserController {
-  constructor(private readonly userService: UserService) {}
+export class UsersController {
+  constructor(private readonly userService: UsersService) {}
 
   @Post()
   @ApiOperation({ summary: 'Create user' })

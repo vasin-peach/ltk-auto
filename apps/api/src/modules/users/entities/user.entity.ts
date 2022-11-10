@@ -23,7 +23,7 @@ export class User {
   @Column()
   password: string;
 
-  @Column({ type: 'enum', enum: permissionEnum, default: permissionEnum.GUEST })
+  @Column({ default: permissionEnum.GUEST })
   @ApiProperty({ example: '<permission>' })
   permission: permissionEnum;
 
@@ -31,11 +31,11 @@ export class User {
   @ApiProperty({ example: '<name>' })
   name: string;
 
-  @CreateDateColumn({ type: 'timestamp' })
+  @CreateDateColumn()
   @ApiProperty({ example: '2022-04-07 15:06:28.475' })
   createdAt: Date;
 
-  @UpdateDateColumn({ type: 'timestamp' })
+  @UpdateDateColumn()
   @ApiProperty({ example: '2022-04-07 15:06:28.475' })
   updatedAt: Date;
 }

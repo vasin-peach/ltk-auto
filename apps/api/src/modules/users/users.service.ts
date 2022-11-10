@@ -11,14 +11,15 @@ import { UpdateUserDto } from './dto/update-user.dto';
 import { User } from './entities/user.entity';
 
 @Injectable()
-export class UserService {
+export class UsersService {
   constructor(
     @InjectRepository(User)
     private usersRepository: Repository<User>,
   ) {}
 
-  create(createUserDto: CreateUserDto): ResponseOneDto<User> {
-    const data = this.usersRepository.create(createUserDto);
+  async create(createUserDto: CreateUserDto): Promise<ResponseOneDto<User>> {
+    const data = await this.usersRepository.save(createUserDto);
+
     return {
       statusCode: HttpStatus.CREATED,
       message: ['CREATE_USER_SUCCESS'],
@@ -30,7 +31,7 @@ export class UserService {
     if (!meta)
       return {
         statusCode: HttpStatus.OK,
-        message: ['GET USERS SUCCESS'],
+        message: ['GET_USERS_SUCCESS'],
         data: await this.usersRepository.find(),
       };
 
