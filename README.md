@@ -1,4 +1,3 @@
-
 https://medium.com/swlh/incremental-docker-builds-for-monolithic-codebases-2dae3ea950e
 
 Setup local SSL for mac
