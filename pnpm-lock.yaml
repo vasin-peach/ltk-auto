@@ -13,7 +13,7 @@ importers:
     devDependencies:
       '@commitlint/cli': 17.2.0
       '@commitlint/config-conventional': 17.2.0
-      eslint-config-custom: link:packages/eslint-config-custom
+      eslint-config-custom: link:config/eslint-config-custom
       husky: 8.0.2
       prettier: 2.7.1
       turbo: 1.6.1
@@ -107,7 +107,7 @@ importers:
       ts-jest: 28.0.5_bilcnjbzqxjas6i363fl2r3xmq
       ts-loader: 9.4.1_typescript@4.8.4
       ts-node: 10.9.1_e7yvbkxpwwqnzxz2s2bfjt7zx4
-      tsconfig: link:../../packages/tsconfig
+      tsconfig: link:../../config/tsconfig
       tsconfig-paths: 4.0.0
       typescript: 4.8.4
 
@@ -129,15 +129,15 @@ importers:
       next: 13.0.0_qtpcxnaaarbm4ws7ughq6oxfve
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
-      ui: link:../../packages/ui
+      ui: link:../../config/ui
     devDependencies:
       '@babel/core': 7.19.6
       '@types/node': 17.0.45
       '@types/react': 18.0.24
       '@types/react-dom': 18.0.8
       eslint: 7.32.0
-      eslint-config-custom: link:../../packages/eslint-config-custom
-      tsconfig: link:../../packages/tsconfig
+      eslint-config-custom: link:../../config/eslint-config-custom
+      tsconfig: link:../../config/tsconfig
       typescript: 4.8.4
 
   apps/web:
@@ -159,7 +159,7 @@ importers:
       next: 13.0.0_qtpcxnaaarbm4ws7ughq6oxfve
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
-      ui: link:../../packages/ui
+      ui: link:../../config/ui
     devDependencies:
       '@babel/core': 7.19.6
       '@types/node': 17.0.45
@@ -167,11 +167,11 @@ importers:
       '@types/react-dom': 18.0.8
       cypress: 10.11.0
       eslint: 7.32.0
-      eslint-config-custom: link:../../packages/eslint-config-custom
-      tsconfig: link:../../packages/tsconfig
+      eslint-config-custom: link:../../config/eslint-config-custom
+      tsconfig: link:../../config/tsconfig
       typescript: 4.8.4
 
-  packages/eslint-config-custom:
+  config/eslint-config-custom:
     specifiers:
       eslint: ^7.23.0
       eslint-config-next: 13.0.0
@@ -188,10 +188,10 @@ importers:
     devDependencies:
       typescript: 4.8.4
 
-  packages/tsconfig:
+  config/tsconfig:
     specifiers: {}
 
-  packages/ui:
+  config/ui:
     specifiers:
       '@types/react': ^18.0.17
       '@types/react-dom': ^18.0.6
