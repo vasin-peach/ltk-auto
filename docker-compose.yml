@@ -10,17 +10,17 @@ services:
     restart: always
     volumes:
       # :ro --> read-only container can read but cant update this directory 
-      - ./config/proxy/:/etc/nginx/conf.d/:ro
-      - ./config/certbot/www:/var/www/certbot/:ro
-      - ./config/certbot/conf/:/etc/nginx/ssl/:ro
-      - ./config/proxy/50x.html:/usr/share/nginx/html/50x.html:ro
+      - ./docker/config/proxy/:/etc/nginx/conf.d/:ro
+      - ./docker/config/certbot/www:/var/www/certbot/:ro
+      - ./docker/config/certbot/conf/:/etc/nginx/ssl/:ro
+      - ./docker/config/proxy/50x.html:/usr/share/nginx/html/50x.html:ro
 
   # certbot:
   #   image: certbot/certbot:latest
   #   volumes:
   #     # :rw --> read-write container can read and update this directory
-  #     - ./config/certbot/www/:/var/www/certbot/:rw
-  #     - ./config/certbot/conf/:/etc/letsencrypt/:rw
+  #     - ./docker/config/certbot/www/:/var/www/certbot/:rw
+  #     - ./docker/config/certbot/conf/:/etc/letsencrypt/:rw
   #   depends_on:
   #     - proxy
 
