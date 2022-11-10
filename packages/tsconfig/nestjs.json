@@ -10,7 +10,6 @@
     "allowSyntheticDefaultImports": true,
     "target": "es2017",
     "sourceMap": true,
-    "outDir": "../../apps/api/dist",
     "baseUrl": ".",
     "incremental": true,
     "skipLibCheck": true,
