@@ -1,5 +1,7 @@
 ## Getting Started
 
+https://medium.com/the-crowdlinker-chronicle/best-way-to-structure-your-directory-code-nestjs-a06c7a641401
+
 First, run the development server:
 
 ```bash
