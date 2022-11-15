@@ -33,15 +33,6 @@ export class CreateUserDto {
   })
   readonly password: string;
 
-  @IsOptional()
-  @IsEnum(permissionEnum)
-  @ApiProperty({
-    example: '<your_permission>',
-    nullable: true,
-    enum: permissionEnum,
-  })
-  readonly permission?: permissionEnum;
-
   @IsNotEmpty()
   @IsString()
   @ApiProperty({

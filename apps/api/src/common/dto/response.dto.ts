@@ -29,10 +29,13 @@ export class ResponseManyDto<TData> {
   @ApiProperty({ example: 200 })
   statusCode: number;
 
-  @ApiProperty({ isArray: true, example: ['<message>'] })
+  @ApiProperty({ isArray: true, example: '<message>' })
   message: string[];
 
-  @ApiProperty({ nullable: true, example: '<error message>' })
+  @ApiProperty({
+    nullable: true,
+    example: '[<error message>] | <error message>',
+  })
   error?: string;
 
   @ApiProperty({ nullable: true, type: ResponseMetaDto })
@@ -45,10 +48,13 @@ export class ResponseOneDto<TData> {
   @ApiProperty({ example: 200 })
   statusCode: number;
 
-  @ApiProperty({ isArray: true, example: ['<message>'] })
+  @ApiProperty({ isArray: true, example: '<message>' })
   message: string[];
 
-  @ApiProperty({ nullable: true, example: '<error message>' })
+  @ApiProperty({
+    nullable: true,
+    example: '[<error message>] | <error message>',
+  })
   error?: string;
 
   data: TData;

@@ -44,7 +44,7 @@ export class UsersController {
   @ApiOperation({ summary: 'Create user' })
   @ApiResponseOne(User, ApiCreatedResponse)
   async create(@Body() createUserDto: CreateUserDto) {
-    const [status, data] = await this.userService.create(createUserDto);
+    const [status, data] = await this.userService.create({ ...createUserDto });
     return {
       statusCode: HttpStatus.CREATED,
       message: [`${ApiUsersEnum.create}_${status}`],
@@ -62,7 +62,7 @@ export class UsersController {
   @Get(':id')
   @ApiOperation({ summary: 'Get user by {:id}' })
   @ApiResponseOne(User, ApiOkResponse)
-  async findById(@Param() id: string): Promise<ResponseOneDto<User>> {
+  async findById(@Param('id') id: string): Promise<ResponseOneDto<User>> {
     const user = await this.userService.findOne({ id });
     return {
       statusCode: HttpStatus.OK,

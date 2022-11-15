@@ -6,6 +6,7 @@ import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { User } from './entities/user.entity';
 import { ApiStatusEnum } from '@libs/constant';
+import { permissionEnum } from '../../common/constants/enum';
 
 @Injectable()
 export class UsersService {
@@ -15,7 +16,10 @@ export class UsersService {
   ) {}
 
   async create(createUserDto: CreateUserDto) {
-    const data = await this.usersRepository.save(createUserDto);
+    const data = await this.usersRepository.save({
+      ...createUserDto,
+      permission: permissionEnum.GUEST,
+    });
     return [ApiStatusEnum.success, data] as const;
   }
 

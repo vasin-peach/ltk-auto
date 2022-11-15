@@ -27,7 +27,7 @@ export class User {
   @Column()
   password: string;
 
-  @Column({ default: permissionEnum.GUEST })
+  @Column({ type: 'smallint', default: permissionEnum.GUEST })
   @ApiProperty({ example: '<permission>' })
   permission: permissionEnum;
 
