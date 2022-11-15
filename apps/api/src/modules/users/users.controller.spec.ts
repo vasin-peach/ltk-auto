@@ -11,7 +11,7 @@ import { UsersService } from './users.service';
 describe('UsersController', () => {
   let usersController: UsersController;
   let usersService: UsersService;
-  let user: User;
+  let user;
 
   beforeEach(async () => {
     const moduleRef = await Test.createTestingModule({
@@ -27,7 +27,7 @@ describe('UsersController', () => {
       username: 'mock01',
       email: 'mock01@email.com',
       password: 'password01',
-      permission: permissionEnum.MEMBER,
+      permission: permissionEnum.GUEST,
       name: 'mock01',
     };
   });
@@ -66,8 +66,12 @@ describe('UsersController', () => {
         data: user,
       };
 
-      // exclude password
+      // exclude
       delete result.data.password;
+      delete resp.data.updatedAt;
+      delete resp.data.createdAt;
+
+      console.log(resp);
 
       expect(resp).toStrictEqual(result);
     });
@@ -89,8 +93,10 @@ describe('UsersController', () => {
         data: user,
       };
 
-      // exclude password
+      // exclude
       delete result.data.password;
+      delete resp.data.updatedAt;
+      delete resp.data.createdAt;
 
       expect(resp).toStrictEqual(result);
     });
@@ -115,7 +121,9 @@ describe('UsersController', () => {
         await usersController.patch(create.data.id, user),
       );
 
-      // create expect result
+      // exclude
+      delete resp.data.updatedAt;
+      delete resp.data.createdAt;
 
       expect(resp).toStrictEqual(result);
     });
