@@ -27,7 +27,7 @@ export class UsersService {
     if (!meta)
       return {
         statusCode: HttpStatus.OK,
-        message: ['GET_USERS_SUCCESS'],
+        message: 'GET_USERS_OK',
         data: await this.usersRepository.find(),
       };
 
@@ -41,7 +41,7 @@ export class UsersService {
 
     return {
       statusCode: HttpStatus.OK,
-      message: ['GET_USER_SUCCESS', 'PAGINATION'],
+      message: 'GET_USERS_OK',
       data,
       meta: {
         ...meta,
@@ -62,6 +62,6 @@ export class UsersService {
     const user = await this.findOne({ id });
     if (!user) return ['NOTFOUND', null];
     await this.usersRepository.remove(user);
-    return ['SUCCESS', null];
+    return ['OK', null];
   }
 }

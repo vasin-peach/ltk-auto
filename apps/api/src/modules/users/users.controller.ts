@@ -66,7 +66,7 @@ export class UsersController {
     const user = await this.userService.findOne({ id });
     return {
       statusCode: HttpStatus.OK,
-      message: ['GET_USER_BY_ID_SUCCESS'],
+      message: 'GET_USERS_BY_ID_OK',
       data: user,
     };
   }
@@ -80,7 +80,7 @@ export class UsersController {
     const user = await this.userService.findOne({ username });
     return {
       statusCode: HttpStatus.OK,
-      message: ['GET_USER_BY_USERNAME_SUCCESS'],
+      message: 'GET_USERS_BY_USERNAME_OK',
       data: user,
     };
   }
@@ -92,7 +92,7 @@ export class UsersController {
 
     return {
       statusCode: HttpStatus.OK,
-      message: ['UPDATE_USER_BY_ID_SUCCESS'],
+      message: 'UPDATE_USERS_BY_ID_OK',
       data: user,
     };
   }
@@ -103,7 +103,7 @@ export class UsersController {
     const [status, user] = await this.userService.remove(id);
     return {
       statusCode: HttpStatus.OK,
-      message: [`DELETE_USER_BY_ID_${status}`],
+      message: [`DELETE_USERS_BY_ID_${status}`],
       data: user,
     };
   }

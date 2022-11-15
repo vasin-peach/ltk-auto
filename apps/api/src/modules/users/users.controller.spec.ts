@@ -87,7 +87,7 @@ describe('UsersController', () => {
       // create expect result
       const result = {
         statusCode: 200,
-        message: 'GET_USERS_BY_USERNAME_SUCCESS',
+        message: 'GET_USERS_BY_USERNAME_OK',
         data: user,
       };
 
@@ -110,7 +110,7 @@ describe('UsersController', () => {
 
       const result = {
         statusCode: 200,
-        message: 'UPDATE_USERS_BY_ID_SUCCESS',
+        message: 'UPDATE_USERS_BY_ID_OK',
         data: user,
       };
 
@@ -133,7 +133,7 @@ describe('UsersController', () => {
       const create = await usersController.create(user);
       const result = {
         statusCode: HttpStatus.OK,
-        message: ['DELETE_USER_BY_ID_SUCCESS'],
+        message: ['DELETE_USERS_BY_ID_OK'],
         data: null,
       };
 
@@ -148,7 +148,7 @@ describe('UsersController', () => {
       await usersController.create(user);
       const result = {
         statusCode: HttpStatus.OK,
-        message: ['DELETE_USER_BY_ID_NOTFOUND'],
+        message: ['DELETE_USERS_BY_ID_NOTFOUND'],
         data: null,
       };
 
