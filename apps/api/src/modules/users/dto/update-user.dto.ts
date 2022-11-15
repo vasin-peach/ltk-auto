@@ -1,7 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { IsEmail, IsEnum, IsOptional, IsString } from 'class-validator';
 import { permissionEnum } from '../../../common/constants/enum';
-import { User } from '../entities/user.entity';
 
 export class UpdateUserDto {
   @IsOptional()

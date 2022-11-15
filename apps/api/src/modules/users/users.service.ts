@@ -1,14 +1,11 @@
 import { HttpStatus, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import {
-  MetaDto,
-  ResponseManyDto,
-  ResponseOneDto,
-} from '../../common/dto/response.dto';
-import { Repository } from 'typeorm';
+import { MetaDto, ResponseManyDto } from '../../common/dto/response.dto';
+import { FindOptionsWhere, Repository } from 'typeorm';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { User } from './entities/user.entity';
+import { ApiStatusEnum } from '@libs/constant';
 
 @Injectable()
 export class UsersService {
@@ -17,14 +14,9 @@ export class UsersService {
     private usersRepository: Repository<User>,
   ) {}
 
-  async create(createUserDto: CreateUserDto): Promise<ResponseOneDto<User>> {
+  async create(createUserDto: CreateUserDto) {
     const data = await this.usersRepository.save(createUserDto);
-
-    return {
-      statusCode: HttpStatus.CREATED,
-      message: ['CREATE_USER_SUCCESS'],
-      data,
-    };
+    return [ApiStatusEnum.success, data] as const;
   }
 
   async findAll(meta?: MetaDto): Promise<ResponseManyDto<User>> {
@@ -54,15 +46,18 @@ export class UsersService {
     };
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} user`;
+  async findOne(query: FindOptionsWhere<User> | FindOptionsWhere<User>[]) {
+    return await this.usersRepository.findOneBy(query);
   }
 
-  update(id: number, updateUserDto: UpdateUserDto) {
-    return `This action updates a #${id} user`;
+  async patch(id: string, updateUserDto: UpdateUserDto) {
+    return await this.usersRepository.save({ ...updateUserDto, id });
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} user`;
+  async remove(id: string) {
+    const user = await this.findOne({ id });
+    if (!user) return ['NOTFOUND', null];
+    await this.usersRepository.remove(user);
+    return ['SUCCESS', null];
   }
 }

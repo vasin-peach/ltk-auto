@@ -13,7 +13,11 @@ import { permissionEnum } from '../../../common/constants/enum';
 export class User {
   @PrimaryGeneratedColumn('uuid')
   @ApiProperty({ example: 'b828ef62-8502-4007-86be-4633bb194840' })
-  id: string;
+  id?: string;
+
+  @Column({ unique: true })
+  @ApiProperty({ example: '<username>' })
+  username: string;
 
   @Column({ unique: true })
   @ApiProperty({ example: '<email>' })
@@ -33,9 +37,9 @@ export class User {
 
   @CreateDateColumn()
   @ApiProperty({ example: '2022-04-07 15:06:28.475' })
-  createdAt: Date;
+  createdAt?: Date;
 
   @UpdateDateColumn()
   @ApiProperty({ example: '2022-04-07 15:06:28.475' })
-  updatedAt: Date;
+  updatedAt?: Date;
 }

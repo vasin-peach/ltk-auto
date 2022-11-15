@@ -3,11 +3,12 @@ import {
   VersioningType,
   VERSION_NEUTRAL,
 } from '@nestjs/common';
-import initSwagger from './swagger';
+import initSwagger from './config/swagger';
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import * as cookieParser from 'cookie-parser';
 import helmet from 'helmet';
+import { HttpExceptionFilter } from './exception/http-exception.filter';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -19,6 +20,7 @@ async function bootstrap() {
     defaultVersion: VERSION_NEUTRAL,
   });
   app.useGlobalPipes(new ValidationPipe({ transform: true }));
+  app.useGlobalFilters(new HttpExceptionFilter());
 
   // production using
   if (process.env.NODE_ENV === 'production') {

@@ -1,6 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
 import {
-  IsDefined,
   IsEmail,
   IsEnum,
   IsNotEmpty,
@@ -10,15 +9,21 @@ import {
 import { permissionEnum } from '../../../common/constants/enum';
 
 export class CreateUserDto {
-  @IsOptional()
+  @IsString()
+  @IsNotEmpty()
+  @ApiProperty({
+    uniqueItems: true,
+    example: '<your_username>',
+  })
+  readonly username: string;
+
   @IsEmail()
   @IsNotEmpty()
   @ApiProperty({
     uniqueItems: true,
     example: '<your_email>',
-    nullable: true,
   })
-  readonly email?: string;
+  readonly email: string;
 
   @IsOptional()
   @IsNotEmpty()
@@ -26,7 +31,7 @@ export class CreateUserDto {
     example: '<your_password>',
     nullable: true,
   })
-  readonly password?: string;
+  readonly password: string;
 
   @IsOptional()
   @IsEnum(permissionEnum)

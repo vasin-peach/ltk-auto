@@ -1,8 +1,9 @@
 import { CacheInterceptor, CacheModule, Module } from '@nestjs/common';
 import { UsersModule } from './modules/users/users.module';
 import { ConfigModule } from '@nestjs/config';
-import { DatabaseModule } from './database/database.module';
+import { DatabaseModule } from './config/database/postgres/provider.module';
 import { APP_INTERCEPTOR } from '@nestjs/core';
+import { AuthModule } from './modules/auth/auth.module';
 
 @Module({
   imports: [
@@ -12,6 +13,7 @@ import { APP_INTERCEPTOR } from '@nestjs/core';
     CacheModule.register(),
     DatabaseModule,
     UsersModule,
+    AuthModule,
   ],
   providers: [
     {
