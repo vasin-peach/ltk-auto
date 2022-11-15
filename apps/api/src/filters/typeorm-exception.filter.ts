@@ -19,7 +19,12 @@ export class TypeOrmExceptionFilter implements ExceptionFilter {
     const ctx = host.switchToHttp();
     const response = ctx.getResponse<Response>();
     const request = ctx.getRequest<Request>();
-    const name = request.path.split('/')[1].toUpperCase();
+    const name = request.route.path
+      .substring(1)
+      .split('/')
+      .join('_BY_')
+      .replace(/[^a-zA-Z_ ]/g, '')
+      .toUpperCase();
     const method = request.method.toUpperCase();
     const url = request.url;
     const ip = request.ip;

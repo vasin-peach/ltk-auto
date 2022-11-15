@@ -9,8 +9,8 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import * as cookieParser from 'cookie-parser';
 import helmet from 'helmet';
-import { HttpExceptionFilter } from './filter/http-exception.filter';
-import { TypeOrmExceptionFilter } from './filter/typeorm-exception.filter';
+import { HttpExceptionFilter } from './filters/http-exception.filter';
+import { TypeOrmExceptionFilter } from './filters/typeorm-exception.filter';
 import { ConfigService } from '@nestjs/config';
 
 async function bootstrap() {

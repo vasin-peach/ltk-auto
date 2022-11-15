@@ -43,7 +43,7 @@ describe('UsersController', () => {
     it('should return array of empty users', async () => {
       const result = {
         statusCode: 200,
-        message: ['GET_USERS_SUCCESS'],
+        message: 'GET_USERS_OK',
         data: [],
       };
 
@@ -62,7 +62,7 @@ describe('UsersController', () => {
       // create expect result
       const result = {
         statusCode: 200,
-        message: ['GET_USER_BY_ID_SUCCESS'],
+        message: 'GET_USERS_BY_ID_OK',
         data: user,
       };
 
@@ -70,8 +70,6 @@ describe('UsersController', () => {
       delete result.data.password;
       delete resp.data.updatedAt;
       delete resp.data.createdAt;
-
-      console.log(resp);
 
       expect(resp).toStrictEqual(result);
     });
@@ -89,7 +87,7 @@ describe('UsersController', () => {
       // create expect result
       const result = {
         statusCode: 200,
-        message: ['GET_USER_BY_USERNAME_SUCCESS'],
+        message: 'GET_USERS_BY_USERNAME_SUCCESS',
         data: user,
       };
 
@@ -112,7 +110,7 @@ describe('UsersController', () => {
 
       const result = {
         statusCode: 200,
-        message: ['UPDATE_USER_BY_ID_SUCCESS'],
+        message: 'UPDATE_USERS_BY_ID_SUCCESS',
         data: user,
       };
 
