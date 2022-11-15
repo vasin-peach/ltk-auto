@@ -1,7 +1,5 @@
 {
   "name": "@libs/constant",
-  "main": "index.ts",
-  "types": "index.ts",
   "devDependencies": {
     "tsconfig": "workspace:*",
     "@types/node": "^16.0.0",
