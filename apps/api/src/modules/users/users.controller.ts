@@ -44,67 +44,45 @@ export class UsersController {
   @ApiOperation({ summary: 'Create user' })
   @ApiResponseOne(User, ApiCreatedResponse)
   async create(@Body() createUserDto: CreateUserDto) {
-    const [status, data] = await this.userService.create({ ...createUserDto });
-    return {
-      statusCode: HttpStatus.CREATED,
-      message: [`${ApiUsersEnum.create}_${status}`],
-      data,
-    };
+    const data = await this.userService.create({ ...createUserDto });
+    return { data };
   }
 
   @Get()
   @ApiOperation({ summary: 'Get users' })
   @ApiResponseMany(User, ApiOkResponse)
-  findAll(): Promise<ResponseManyDto<User>> {
-    return this.userService.findAll();
+  async findAll() {
+    const [data, meta] = await this.userService.findAll();
+    return { data, meta };
   }
 
   @Get(':id')
   @ApiOperation({ summary: 'Get user by {:id}' })
   @ApiResponseOne(User, ApiOkResponse)
-  async findById(@Param('id') id: string): Promise<ResponseOneDto<User>> {
-    const user = await this.userService.findOne({ id });
-    return {
-      statusCode: HttpStatus.OK,
-      message: 'GET_USERS_BY_ID_OK',
-      data: user,
-    };
+  async findById(@Param('id') id: string) {
+    const data = await this.userService.findOne({ id });
+    return { data };
   }
 
   @Get('username/:username')
   @ApiOperation({ summary: 'Get user by {:username}' })
   @ApiResponseOne(User, ApiOkResponse)
-  async findByUsername(
-    @Param('username') username: string,
-  ): Promise<ResponseOneDto<User>> {
-    const user = await this.userService.findOne({ username });
-    return {
-      statusCode: HttpStatus.OK,
-      message: 'GET_USERS_BY_USERNAME_OK',
-      data: user,
-    };
+  async findByUsername(@Param('username') username: string) {
+    const data = await this.userService.findOne({ username });
+    return { data };
   }
 
   @Patch(':id')
   @ApiOperation({ summary: 'Patch user by {:id}' })
   async patch(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
-    const user = await this.userService.patch(id, updateUserDto);
-
-    return {
-      statusCode: HttpStatus.OK,
-      message: 'UPDATE_USERS_BY_ID_OK',
-      data: user,
-    };
+    const data = await this.userService.patch(id, updateUserDto);
+    return { data };
   }
 
   @Delete(':id')
   @ApiOperation({ summary: 'Delete user' })
   async remove(@Param('id') id: string) {
-    const [status, user] = await this.userService.remove(id);
-    return {
-      statusCode: HttpStatus.OK,
-      message: [`DELETE_USERS_BY_ID_${status}`],
-      data: user,
-    };
+    const data = await this.userService.remove(id);
+    return { data };
   }
 }

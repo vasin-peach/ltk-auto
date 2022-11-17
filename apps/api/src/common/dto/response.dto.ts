@@ -29,35 +29,57 @@ export class ResponseManyDto<TData> {
   @ApiProperty({ example: 200 })
   statusCode: number;
 
-  @ApiProperty({ isArray: true, example: '<message>' })
-  message: string;
+  @ApiProperty({
+    nullable: true,
+    example: '[<error message>] | <error message> | <undefined>',
+  })
+  error?: string[] | string;
 
   @ApiProperty({
     nullable: true,
-    example: '[<error message>] | <error message>',
+    example: '<error code> | <undefined>',
   })
-  error?: string[] | string;
+  errorCode?: string;
+
+  @ApiProperty({ isArray: true, example: '<message>' })
+  message: string;
 
   @ApiProperty({ nullable: true, type: ResponseMetaDto })
   meta?: ResponseMetaDto;
 
   data: TData[];
+
+  @ApiProperty({
+    example: '2022-11-17T06:17:22.172Z',
+  })
+  timestamp: string;
 }
 
 export class ResponseOneDto<TData> {
   @ApiProperty({ example: 200 })
   statusCode: number;
 
-  @ApiProperty({ isArray: true, example: '<message>' })
-  message: string;
-
   @ApiProperty({
     nullable: true,
-    example: '[<error message>] | <error message>',
+    example: '[<error message>] | <error message> | <undefined>',
   })
   error?: string[] | string;
 
+  @ApiProperty({
+    nullable: true,
+    example: '<error code> | <undefined>',
+  })
+  errorCode?: string;
+
+  @ApiProperty({ isArray: true, example: '<message>' })
+  message: string;
+
   data: TData;
+
+  @ApiProperty({
+    example: '2022-11-17T06:17:22.172Z',
+  })
+  timestamp: string;
 }
 
 export const ApiResponseMany = <TModel extends Type<any>>(

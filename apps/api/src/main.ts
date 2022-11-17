@@ -12,6 +12,7 @@ import helmet from 'helmet';
 import { HttpExceptionFilter } from './filters/http-exception.filter';
 import { TypeOrmExceptionFilter } from './filters/typeorm-exception.filter';
 import { ConfigService } from '@nestjs/config';
+import { ResponseInterceptor } from './interceptors/response.interceptor';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -39,8 +40,9 @@ async function bootstrap() {
   );
   app.useGlobalFilters(
     new TypeOrmExceptionFilter(config),
-    new HttpExceptionFilter(),
+    new HttpExceptionFilter(config),
   );
+  app.useGlobalInterceptors(new ResponseInterceptor());
 
   // production using
   if (process.env.NODE_ENV === 'production') {

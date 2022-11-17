@@ -20,16 +20,20 @@ export class UsersService {
       ...createUserDto,
       permission: permissionEnum.GUEST,
     });
-    return [ApiStatusEnum.success, data] as const;
+    return data;
   }
 
-  async findAll(meta?: MetaDto): Promise<ResponseManyDto<User>> {
-    if (!meta)
-      return {
-        statusCode: HttpStatus.OK,
-        message: 'GET_USERS_OK',
-        data: await this.usersRepository.find(),
-      };
+  async findAll(meta?: MetaDto) {
+    if (!meta) {
+      const [data, total] = await Promise.all([
+        this.usersRepository.find(),
+        this.usersRepository.count(),
+      ]);
+
+      const metadata = { total };
+
+      return [data, metadata];
+    }
 
     const queryBuilder = this.usersRepository.createQueryBuilder('user');
     queryBuilder.skip(meta.page * meta.offset).take(meta.offset); // build pagination builder
@@ -39,15 +43,9 @@ export class UsersService {
       queryBuilder.getCount(),
     ]);
 
-    return {
-      statusCode: HttpStatus.OK,
-      message: 'GET_USERS_OK',
-      data,
-      meta: {
-        ...meta,
-        total,
-      },
-    };
+    const metadata = { ...meta, total };
+
+    return [data, metadata] as const;
   }
 
   async findOne(query: FindOptionsWhere<User> | FindOptionsWhere<User>[]) {
@@ -60,8 +58,7 @@ export class UsersService {
 
   async remove(id: string) {
     const user = await this.findOne({ id });
-    if (!user) return ['NOTFOUND', null];
-    await this.usersRepository.remove(user);
-    return ['OK', null];
+    if (!user) return user;
+    return await this.usersRepository.remove(user);
   }
 }
