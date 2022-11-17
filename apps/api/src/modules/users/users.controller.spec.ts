@@ -54,7 +54,7 @@ describe('UsersController', () => {
   describe('Get user by {:id}', () => {
     it('should return user from specific id', async () => {
       // create user
-      const [, create] = await usersService.create(user);
+      const create = await usersService.create(user);
 
       // query user by id
       const resp = instanceToPlain(await usersController.findById(create.id));
