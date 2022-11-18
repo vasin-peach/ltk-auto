@@ -1,10 +1,8 @@
-import { ApiMethodEnum } from '@libs/constant';
 import {
   ExceptionFilter,
   Catch,
   ArgumentsHost,
   HttpException,
-  HttpStatus,
   Logger,
 } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';

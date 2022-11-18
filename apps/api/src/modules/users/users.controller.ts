@@ -28,7 +28,6 @@ import {
   ResponseOneDto,
   ResponseManyDto,
 } from '../../common/dto/response.dto';
-import { ApiUsersEnum } from '@libs/constant';
 
 @ApiTags('users')
 @ApiBearerAuth()
@@ -64,11 +63,11 @@ export class UsersController {
     return { data };
   }
 
-  @Get('username/:username')
-  @ApiOperation({ summary: 'Get user by {:username}' })
+  @Get('username/:email')
+  @ApiOperation({ summary: 'Get user by {:email}' })
   @ApiResponseOne(User, ApiOkResponse)
-  async findByUsername(@Param('username') username: string) {
-    const data = await this.userService.findOne({ username });
+  async findByEmail(@Param('email') email: string) {
+    const data = await this.userService.findOne({ email });
     return { data };
   }
 

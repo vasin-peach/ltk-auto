@@ -1,4 +1,4 @@
-import { HttpStatus } from '@nestjs/common';
+import { comparePassword } from '@libs/helper';
 import { Test } from '@nestjs/testing';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { instanceToPlain } from 'class-transformer';
@@ -24,7 +24,6 @@ describe('UsersController', () => {
     usersController = moduleRef.get<UsersController>(UsersController);
     user = {
       id: '01faa5bf-4f07-4493-8969-fca0f5029656',
-      username: 'mock01',
       email: 'mock01@email.com',
       password: 'password01',
       permission: permissionEnum.GUEST,
@@ -36,6 +35,16 @@ describe('UsersController', () => {
     it('should return array of users with 1 length', async () => {
       await usersController.create(user);
       expect((await usersController.findAll()).data).toHaveLength(1);
+    });
+
+    it('hash password should return true when compare with plain password', async () => {
+      const create = await usersController.create(user);
+
+      const plainPassword = user.password;
+      const hashPassword = create.data.password;
+      const compare = await comparePassword(plainPassword, hashPassword);
+
+      expect(compare).toBe(true);
     });
   });
 
@@ -72,13 +81,13 @@ describe('UsersController', () => {
     });
   });
 
-  describe('Get user by {:username}', () => {
-    it('should return user from specific username', async () => {
+  describe('Get user by {:email}', () => {
+    it('should return user from specific email', async () => {
       await usersController.create(user);
 
       // query user by id
       const resp = instanceToPlain(
-        await usersController.findByUsername(user.username),
+        await usersController.findByEmail(user.email),
       );
 
       // create expect result

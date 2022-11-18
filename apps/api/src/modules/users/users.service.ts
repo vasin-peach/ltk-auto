@@ -1,12 +1,12 @@
-import { HttpStatus, Injectable } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { MetaDto, ResponseManyDto } from '../../common/dto/response.dto';
+import { MetaDto } from '../../common/dto/response.dto';
 import { FindOptionsWhere, Repository } from 'typeorm';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { User } from './entities/user.entity';
-import { ApiStatusEnum } from '@libs/constant';
 import { permissionEnum } from '../../common/constants/enum';
+import { hashPassword } from '@libs/helper';
 
 @Injectable()
 export class UsersService {
@@ -16,6 +16,11 @@ export class UsersService {
   ) {}
 
   async create(createUserDto: CreateUserDto) {
+    // hash password and re-assign to dto
+    const password = await hashPassword(createUserDto.password);
+    createUserDto = { ...createUserDto, password };
+
+    // create user
     const data = await this.usersRepository.save({
       ...createUserDto,
       permission: permissionEnum.GUEST,

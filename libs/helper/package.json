@@ -1,0 +1,12 @@
+{
+  "name": "@libs/helper",
+  "devDependencies": {
+    "@types/bcrypt": "^5.0.0",
+    "@types/node": "^16.0.0",
+    "tsconfig": "workspace:*",
+    "typescript": "^4.3.5"
+  },
+  "dependencies": {
+    "bcrypt": "^5.1.0"
+  }
+}
