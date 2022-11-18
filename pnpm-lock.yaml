@@ -243,15 +243,15 @@ importers:
 
   libs/helper:
     specifiers:
-      '@types/bcrypt': ^5.0.0
+      '@types/bcryptjs': ^2.4.2
       '@types/node': ^16.0.0
-      bcrypt: ^5.1.0
+      bcryptjs: ^2.4.3
       tsconfig: workspace:*
       typescript: ^4.3.5
     dependencies:
-      bcrypt: 5.1.0
+      bcryptjs: 2.4.3
     devDependencies:
-      '@types/bcrypt': 5.0.0
+      '@types/bcryptjs': 2.4.2
       '@types/node': 16.18.3
       tsconfig: link:../../config/tsconfig
       typescript: 4.8.4
@@ -1761,10 +1761,8 @@ packages:
       '@babel/types': 7.20.0
     dev: true
 
-  /@types/bcrypt/5.0.0:
-    resolution: {integrity: sha512-agtcFKaruL8TmcvqbndlqHPSJgsolhf/qPWchFlgnW1gECTN/nKbFcoFnvKAQRFfKbh+BO6A3SWdJu9t+xF3Lw==}
-    dependencies:
-      '@types/node': 17.0.45
+  /@types/bcryptjs/2.4.2:
+    resolution: {integrity: sha512-LiMQ6EOPob/4yUL66SZzu6Yh77cbzJFYll+ZfaPiPPFswtIlA/Fs1MzdKYA7JApHU49zQTbJGX3PDmCpIdDBRQ==}
     dev: true
 
   /@types/body-parser/1.19.2:
@@ -2680,16 +2678,8 @@ packages:
       tweetnacl: 0.14.5
     dev: true
 
-  /bcrypt/5.1.0:
-    resolution: {integrity: sha512-RHBS7HI5N5tEnGTmtR/pppX0mmDSBpQ4aCBsj7CEQfYXDcO74A8sIBYcJMuCsis2E81zDxeENYhv66oZwLiA+Q==}
-    engines: {node: '>= 10.0.0'}
-    requiresBuild: true
-    dependencies:
-      '@mapbox/node-pre-gyp': 1.0.10
-      node-addon-api: 5.0.0
-    transitivePeerDependencies:
-      - encoding
-      - supports-color
+  /bcryptjs/2.4.3:
+    resolution: {integrity: sha512-V/Hy/X9Vt7f3BbPJEi8BdVFMByHi+jNXrYkW3huaybV/kQ0KJg0Y6PkEMbn+zeT+i+SiKZ/HMqJGIIt4LZDqNQ==}
     dev: false
 
   /binary-extensions/2.2.0:
@@ -6207,10 +6197,6 @@ packages:
 
   /node-addon-api/4.3.0:
     resolution: {integrity: sha512-73sE9+3UaLYYFmDsFZnqCInzPyh3MqIwZO9cw58yIqAZhONrrabrYyYe3TuIqtIiOuTXVhsGau8hcrhhwSsDIQ==}
-    dev: false
-
-  /node-addon-api/5.0.0:
-    resolution: {integrity: sha512-CvkDw2OEnme7ybCykJpVcKH+uAOLV2qLqiyla128dN9TkEWfrYmxG6C2boDe5KcNQqZF3orkqzGgOMvZ/JNekA==}
     dev: false
 
   /node-emoji/1.11.0:

@@ -7,7 +7,8 @@ import {
   Param,
   Delete,
   VERSION_NEUTRAL,
-  HttpStatus,
+  UseGuards,
+  Req,
 } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { CreateUserDto } from './dto/create-user.dto';
@@ -28,6 +29,7 @@ import {
   ResponseOneDto,
   ResponseManyDto,
 } from '../../common/dto/response.dto';
+import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 
 @ApiTags('users')
 @ApiBearerAuth()
@@ -39,7 +41,16 @@ import {
 export class UsersController {
   constructor(private readonly userService: UsersService) {}
 
+  @Get('me')
+  @UseGuards(JwtAuthGuard)
+  @ApiOperation({ summary: 'Get my user profile' })
+  @ApiResponseOne(User, ApiOkResponse)
+  async me(@Req() req) {
+    return { data: req.user };
+  }
+
   @Post()
+  @UseGuards(JwtAuthGuard)
   @ApiOperation({ summary: 'Create user' })
   @ApiResponseOne(User, ApiCreatedResponse)
   async create(@Body() createUserDto: CreateUserDto) {
@@ -48,6 +59,7 @@ export class UsersController {
   }
 
   @Get()
+  @UseGuards(JwtAuthGuard)
   @ApiOperation({ summary: 'Get users' })
   @ApiResponseMany(User, ApiOkResponse)
   async findAll() {
@@ -56,6 +68,7 @@ export class UsersController {
   }
 
   @Get(':id')
+  @UseGuards(JwtAuthGuard)
   @ApiOperation({ summary: 'Get user by {:id}' })
   @ApiResponseOne(User, ApiOkResponse)
   async findById(@Param('id') id: string) {
@@ -64,6 +77,7 @@ export class UsersController {
   }
 
   @Get('username/:email')
+  @UseGuards(JwtAuthGuard)
   @ApiOperation({ summary: 'Get user by {:email}' })
   @ApiResponseOne(User, ApiOkResponse)
   async findByEmail(@Param('email') email: string) {
@@ -72,6 +86,7 @@ export class UsersController {
   }
 
   @Patch(':id')
+  @UseGuards(JwtAuthGuard)
   @ApiOperation({ summary: 'Patch user by {:id}' })
   async patch(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
     const data = await this.userService.patch(id, updateUserDto);
@@ -79,6 +94,7 @@ export class UsersController {
   }
 
   @Delete(':id')
+  @UseGuards(JwtAuthGuard)
   @ApiOperation({ summary: 'Delete user' })
   async remove(@Param('id') id: string) {
     const data = await this.userService.remove(id);

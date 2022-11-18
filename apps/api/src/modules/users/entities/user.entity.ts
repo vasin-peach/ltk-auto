@@ -7,7 +7,7 @@ import {
   CreateDateColumn,
   UpdateDateColumn,
 } from 'typeorm';
-import { permissionEnum } from '../../../common/constants/enum';
+import { roleEnum } from '../../../common/constants/enum';
 
 @Entity()
 export class User {
@@ -23,9 +23,9 @@ export class User {
   @Column()
   password: string;
 
-  @Column({ type: 'smallint', default: permissionEnum.GUEST })
-  @ApiProperty({ example: '<permission>' })
-  permission: permissionEnum;
+  @Column({ type: 'smallint', default: roleEnum.GUEST })
+  @ApiProperty({ example: '<role>' })
+  role: roleEnum;
 
   @Column()
   @ApiProperty({ example: '<name>' })

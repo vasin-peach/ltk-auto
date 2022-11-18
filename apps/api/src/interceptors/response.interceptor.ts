@@ -20,14 +20,14 @@ export class ResponseInterceptor<T>
   ): Observable<ResponseOneDto<T> | ResponseManyDto<T>> {
     return next.handle().pipe(
       map((data) => {
-        const statusCode = data.data ? HttpStatus.OK : HttpStatus.NOT_FOUND;
+        const statusCode = data?.data ? HttpStatus.OK : HttpStatus.NOT_FOUND;
         return {
           statusCode: statusCode,
           error: null,
           errorCode: null,
           message: createMessageName(context, statusCode),
-          data: data.data,
-          meta: data.meta,
+          data: data?.data,
+          meta: data?.meta,
           timestamp: new Date().toISOString(),
         };
       }),

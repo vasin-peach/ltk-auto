@@ -29,7 +29,11 @@ export const createMessageName = (
     exceptionMsg || (action ? `_${action[0]}` : '').toUpperCase();
   const paramMsg = (param ? `_BY_${param}` : '').toUpperCase();
   const methodMsg = (
-    ApiMethodEnum[method] ? ApiMethodEnum[method] : 'error'
+    name === 'auth'
+      ? 'sign_in'
+      : ApiMethodEnum[method]
+      ? ApiMethodEnum[method]
+      : 'error'
   ).toUpperCase();
 
   return `${methodMsg}${nameMsg}${paramMsg}${actionMsg}`;

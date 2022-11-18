@@ -1,7 +1,7 @@
-export enum permissionEnum {
+export enum roleEnum {
   GUEST = 0,
   MEMBER = 1,
-  MAINTAIN = 10,
-  ADMIN = 11,
-  SUPERADMIN = 100,
+  WRITER = 2,
+  ADMIN = 3,
+  SUPERADMIN = 4,
 }

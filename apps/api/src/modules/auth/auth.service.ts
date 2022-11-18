@@ -1,5 +1,12 @@
-import { Injectable } from '@nestjs/common';
+import { comparePassword } from '@libs/helper';
+import {
+  BadRequestException,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
+import { instanceToPlain } from 'class-transformer';
+import { User } from '../users/entities/user.entity';
 import { UsersService } from '../users/users.service';
 
 @Injectable()
@@ -9,19 +16,24 @@ export class AuthService {
     private jwtService: JwtService,
   ) {}
 
-  async validateUser(email: string, password: string): Promise<any> {
+  async validate(email: string, password: string) {
     const user = await this.usersService.findOne({ email });
-    if (user && user.password === password) {
-      const { password, ...result } = user;
-      return result;
-    }
-    return null;
+
+    // is not found
+    if (!user)
+      throw new NotFoundException({ error: [`email '${email}' not found`] });
+
+    // is password not correct
+    if (!comparePassword(password, user.password))
+      throw new BadRequestException({ error: ['password is not correct'] });
+
+    return instanceToPlain(user);
   }
 
-  async login(user: any) {
-    const payload = { email: user.email, sub: user.userId };
+  signIn(data: User) {
+    const payload = data;
     return {
-      access_token: this.jwtService.sign(payload),
+      accessToken: this.jwtService.sign(payload),
     };
   }
 }

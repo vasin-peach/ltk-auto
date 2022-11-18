@@ -10,6 +10,7 @@ import { CommonModule } from './common/common.module';
   imports: [
     ConfigModule.forRoot({
       envFilePath: ['.env', '.env.local'],
+      isGlobal: true,
     }),
     CacheModule.register(),
     DatabaseModule,

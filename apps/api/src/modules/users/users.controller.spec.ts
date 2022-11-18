@@ -2,7 +2,7 @@ import { comparePassword } from '@libs/helper';
 import { Test } from '@nestjs/testing';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { instanceToPlain } from 'class-transformer';
-import { permissionEnum } from '../../common/constants/enum';
+import { roleEnum } from '../../common/constants/enum';
 import { DatabaseMockModule } from '../../config/database/memory/provider.module';
 import { User } from './entities/user.entity';
 import { UsersController } from './users.controller';
@@ -26,7 +26,7 @@ describe('UsersController', () => {
       id: '01faa5bf-4f07-4493-8969-fca0f5029656',
       email: 'mock01@email.com',
       password: 'password01',
-      permission: permissionEnum.GUEST,
+      role: roleEnum.GUEST,
       name: 'mock01',
     };
   });
