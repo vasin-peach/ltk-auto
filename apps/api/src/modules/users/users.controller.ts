@@ -30,6 +30,9 @@ import {
   ResponseManyDto,
 } from '../../common/dto/response.dto';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
+import { RoleEnum } from '@libs/constant';
+import { Role } from '../auth/decorators/roles.decorator';
+import { RoleGuard } from '../auth/guards/role.guard';
 
 @ApiTags('users')
 @ApiBearerAuth()
@@ -50,7 +53,8 @@ export class UsersController {
   }
 
   @Post()
-  @UseGuards(JwtAuthGuard)
+  @UseGuards(JwtAuthGuard, RoleGuard)
+  @Role(RoleEnum.ADMIN)
   @ApiOperation({ summary: 'Create user' })
   @ApiResponseOne(User, ApiCreatedResponse)
   async create(@Body() createUserDto: CreateUserDto) {
@@ -59,7 +63,8 @@ export class UsersController {
   }
 
   @Get()
-  @UseGuards(JwtAuthGuard)
+  @UseGuards(JwtAuthGuard, RoleGuard)
+  @Role(RoleEnum.ADMIN)
   @ApiOperation({ summary: 'Get users' })
   @ApiResponseMany(User, ApiOkResponse)
   async findAll() {
@@ -94,7 +99,8 @@ export class UsersController {
   }
 
   @Delete(':id')
-  @UseGuards(JwtAuthGuard)
+  @UseGuards(JwtAuthGuard, RoleGuard)
+  @Role(RoleEnum.ADMIN)
   @ApiOperation({ summary: 'Delete user' })
   async remove(@Param('id') id: string) {
     const data = await this.userService.remove(id);

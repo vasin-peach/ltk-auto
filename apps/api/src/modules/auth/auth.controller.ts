@@ -2,11 +2,9 @@ import {
   Controller,
   Post,
   VERSION_NEUTRAL,
-  Request,
   UseGuards,
   Body,
   Req,
-  Get,
 } from '@nestjs/common';
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
 import { AuthService } from './auth.service';

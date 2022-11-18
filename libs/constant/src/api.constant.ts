@@ -13,12 +13,6 @@ export enum ApiMethodEnum {
   HEAD = 7,
 }
 
-export enum ApiStatusEnum {
-  success = "SUCCESS",
-  notfound = "NOTFOUND",
-  error = "ERROR",
-}
-
 export enum ApiUsersEnum {
   create = "CREATE_USER",
   getUsers = "GET_USERS",
