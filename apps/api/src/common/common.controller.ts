@@ -9,14 +9,14 @@ import {
   ApiExtraModels,
   ApiOkResponse,
   ApiOperation,
+  ApiProperty,
   ApiTags,
 } from '@nestjs/swagger';
-import { ResponseInterceptor } from '../interceptors/response.interceptor';
 import { ApiResponseOne, ResponseOneDto } from './dto/response.dto';
 
 class Healthy {
-  readonly statusCode: number;
-  readonly error: null;
+  @ApiProperty({ example: 'Healthy' })
+  readonly data: string;
 }
 
 @ApiTags('common')
@@ -34,7 +34,7 @@ export class CommonController {
       statusCode: HttpStatus.OK,
       error: null,
       errorCode: null,
-      data: null,
+      data: { data: 'HEALTHY' },
       message: 'HEALTHY',
       timestamp: new Date().toISOString(),
     };

@@ -41,13 +41,16 @@ describe('UsersController', () => {
 
   describe('Get users', () => {
     it('should return array of empty users', async () => {
+      const { data, meta } = await usersController.findAll();
+
       const result = {
-        statusCode: 200,
-        message: 'GET_USERS_OK',
         data: [],
+        meta: {
+          total: 0,
+        },
       };
 
-      expect(await usersController.findAll()).toStrictEqual(result);
+      expect({ data, meta }).toStrictEqual(result);
     });
   });
 
@@ -58,13 +61,7 @@ describe('UsersController', () => {
 
       // query user by id
       const resp = instanceToPlain(await usersController.findById(create.id));
-
-      // create expect result
-      const result = {
-        statusCode: 200,
-        message: 'GET_USERS_BY_ID_OK',
-        data: user,
-      };
+      const result = { data: user };
 
       // exclude
       delete result.data.password;
@@ -85,11 +82,7 @@ describe('UsersController', () => {
       );
 
       // create expect result
-      const result = {
-        statusCode: 200,
-        message: 'GET_USERS_BY_USERNAME_OK',
-        data: user,
-      };
+      const result = { data: user };
 
       // exclude
       delete result.data.password;
@@ -108,16 +101,14 @@ describe('UsersController', () => {
       // update user payload
       user = { ...user, email: 'mock02@email.com' };
 
-      const result = {
-        statusCode: 200,
-        message: 'UPDATE_USERS_BY_ID_OK',
-        data: user,
-      };
-
       // query user by id
       const resp = instanceToPlain(
         await usersController.patch(create.data.id, user),
       );
+
+      const result = {
+        data: user,
+      };
 
       // exclude
       delete resp.data.updatedAt;
@@ -131,14 +122,18 @@ describe('UsersController', () => {
     it('should return null with success status if {:id} is exist', async () => {
       // create user
       const create = await usersController.create(user);
-      const result = {
-        statusCode: HttpStatus.OK,
-        message: ['DELETE_USERS_BY_ID_OK'],
-        data: null,
-      };
+      const result = { data: user };
 
       // remove
-      const resp = await usersController.remove(create.data.id);
+      const resp = instanceToPlain(
+        await usersController.remove(create.data.id),
+      );
+
+      delete result.data.id;
+      delete result.data.password;
+      delete resp.data.id;
+      delete resp.data.createdAt;
+      delete resp.data.updatedAt;
 
       expect(resp).toStrictEqual(result);
     });
@@ -146,11 +141,7 @@ describe('UsersController', () => {
     it('should return null with notfound status  if {:id} is not exist', async () => {
       // create user
       await usersController.create(user);
-      const result = {
-        statusCode: HttpStatus.OK,
-        message: ['DELETE_USERS_BY_ID_NOTFOUND'],
-        data: null,
-      };
+      const result = { data: null };
 
       // remove
       const resp = await usersController.remove('mockup-id');
