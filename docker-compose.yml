@@ -25,7 +25,7 @@ services:
   #     - proxy
 
   web:
-    image: ltk-auto/web
+    image: my-web/web
     build:
       context: .
       dockerfile: ./apps/web/Dockerfile
@@ -35,7 +35,7 @@ services:
     restart: always
 
   docs:
-    image: ltk-auto/docs
+    image: my-web/docs
     build:
       context: .
       dockerfile: ./apps/docs/Dockerfile
@@ -45,7 +45,7 @@ services:
     restart: always
 
   api:
-    image: ltk-auto/api
+    image: my-web/api
     build:
       context: .
       dockerfile: ./apps/api/Dockerfile
