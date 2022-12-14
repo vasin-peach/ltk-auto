@@ -34,16 +34,6 @@ services:
       - 3000:3000
     restart: always
 
-  docs:
-    image: my-web/docs
-    build:
-      context: .
-      dockerfile: ./apps/docs/Dockerfile
-    container_name: docs
-    ports:
-      - 3001:3001
-    restart: always
-
   api:
     image: my-web/api
     build:
