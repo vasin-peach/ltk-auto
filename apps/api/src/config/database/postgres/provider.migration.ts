@@ -1,7 +1,7 @@
-import { DataSource } from 'typeorm';
-import * as dotenv from 'dotenv';
+import { DataSource } from 'typeorm'
+import * as dotenv from 'dotenv'
 
-dotenv.config();
+dotenv.config()
 
 export default new DataSource({
   type: 'postgres',
@@ -15,4 +15,4 @@ export default new DataSource({
   entities: ['dist/**/*.entity.{ts,js}'],
   migrations: ['dist/database/migrations/*{.ts,.js}'],
   migrationsRun: true,
-});
+})

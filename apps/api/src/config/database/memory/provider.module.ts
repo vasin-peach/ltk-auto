@@ -1,5 +1,5 @@
-import { Module } from '@nestjs/common';
-import { TypeOrmModule } from '@nestjs/typeorm';
+import { Module } from '@nestjs/common'
+import { TypeOrmModule } from '@nestjs/typeorm'
 
 @Module({
   imports: [
@@ -11,7 +11,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
           autoLoadEntities: true,
           synchronize: true,
           retryAttempts: 2,
-        };
+        }
       },
     }),
   ],

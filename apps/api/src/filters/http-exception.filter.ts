@@ -4,28 +4,28 @@ import {
   ArgumentsHost,
   HttpException,
   Logger,
-} from '@nestjs/common';
-import { ConfigService } from '@nestjs/config';
-import { Request, Response } from 'express';
-import { createMessageName } from './helper';
+} from '@nestjs/common'
+import { ConfigService } from '@nestjs/config'
+import { Request, Response } from 'express'
+import { createMessageName } from './helper'
 
 @Catch(HttpException)
 export class HttpExceptionFilter implements ExceptionFilter {
   constructor(private configService: ConfigService) {}
-  private logger = new Logger('Exception');
+  private logger = new Logger('Exception')
 
   catch(exception: HttpException, host: ArgumentsHost) {
-    const ctx = host.switchToHttp();
-    const response = ctx.getResponse<Response>();
-    const request = ctx.getRequest<Request>();
-    const status = exception.getStatus();
+    const ctx = host.switchToHttp()
+    const response = ctx.getResponse<Response>()
+    const request = ctx.getRequest<Request>()
+    const status = exception.getStatus()
 
-    const method = request.method.toUpperCase();
-    const url = request.url;
-    const ip = request.ip;
+    const method = request.method.toUpperCase()
+    const url = request.url
+    const ip = request.ip
 
     // extract exception content
-    const exceptionResponse = exception.getResponse() as Record<string, any>;
+    const exceptionResponse = exception.getResponse() as Record<string, any>
 
     response.status(status).json({
       statusCode: status,
@@ -38,7 +38,7 @@ export class HttpExceptionFilter implements ExceptionFilter {
         this.configService.get('NODE_ENV') === 'development'
           ? exception
           : undefined,
-    });
+    })
 
     this.logger.log(
       `HTTPException {${decodeURIComponent(url)}, ${method}} (${ip}) ${
@@ -46,6 +46,6 @@ export class HttpExceptionFilter implements ExceptionFilter {
           ? exceptionResponse?.error?.join(', ')
           : exceptionResponse?.error
       }`,
-    );
+    )
   }
 }

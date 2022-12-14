@@ -1,5 +1,5 @@
-import { ApiProperty } from '@nestjs/swagger';
-import { IsEmail, IsNotEmpty, Matches } from 'class-validator';
+import { ApiProperty } from '@nestjs/swagger'
+import { IsEmail, IsNotEmpty, Matches } from 'class-validator'
 
 export class SignInDto {
   @IsEmail()
@@ -8,11 +8,11 @@ export class SignInDto {
     uniqueItems: true,
     example: '<your_email>',
   })
-  readonly email: string;
+  readonly email: string
 
   @IsNotEmpty()
   @ApiProperty({
     example: '<your_password>',
   })
-  readonly password: string;
+  readonly password: string
 }

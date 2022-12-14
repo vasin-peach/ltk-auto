@@ -4,25 +4,25 @@ import {
   ExceptionFilter,
   HttpStatus,
   Logger,
-} from '@nestjs/common';
-import { TypeORMError } from 'typeorm';
-import { Request, Response } from 'express';
-import { ConfigService } from '@nestjs/config';
-import { createMessageName } from './helper';
+} from '@nestjs/common'
+import { TypeORMError } from 'typeorm'
+import { Request, Response } from 'express'
+import { ConfigService } from '@nestjs/config'
+import { createMessageName } from './helper'
 
-Catch(TypeORMError);
+Catch(TypeORMError)
 export class TypeOrmExceptionFilter implements ExceptionFilter {
   constructor(private configService: ConfigService) {}
-  private logger = new Logger('Exception');
+  private logger = new Logger('Exception')
 
   catch(exception: any, host: ArgumentsHost) {
-    const ctx = host.switchToHttp();
-    const request = ctx.getRequest<Request>();
-    const response = ctx.getResponse<Response>();
+    const ctx = host.switchToHttp()
+    const request = ctx.getRequest<Request>()
+    const response = ctx.getResponse<Response>()
 
-    const method = request.method.toUpperCase();
-    const url = request.url;
-    const ip = request.ip;
+    const method = request.method.toUpperCase()
+    const url = request.url
+    const ip = request.ip
 
     response.status(HttpStatus.INTERNAL_SERVER_ERROR).json({
       statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
@@ -39,12 +39,12 @@ export class TypeOrmExceptionFilter implements ExceptionFilter {
         this.configService.get('NODE_ENV') === 'development'
           ? exception
           : undefined,
-    });
+    })
 
     this.logger.log(
       `TypeORMException {${decodeURIComponent(url)}, ${method}} (${ip}) ${
         exception.message
       }`,
-    );
+    )
   }
 }

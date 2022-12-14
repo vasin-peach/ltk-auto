@@ -4,19 +4,19 @@ import {
   HttpStatus,
   UseInterceptors,
   VERSION_NEUTRAL,
-} from '@nestjs/common';
+} from '@nestjs/common'
 import {
   ApiExtraModels,
   ApiOkResponse,
   ApiOperation,
   ApiProperty,
   ApiTags,
-} from '@nestjs/swagger';
-import { ApiResponseOne, ResponseOneDto } from './dto/response.dto';
+} from '@nestjs/swagger'
+import { ApiResponseOne, ResponseOneDto } from './dto/response.dto'
 
 class Healthy {
   @ApiProperty({ example: 'Healthy' })
-  readonly data: string;
+  readonly data: string
 }
 
 @ApiTags('common')
@@ -37,6 +37,6 @@ export class CommonController {
       data: { data: 'HEALTHY' },
       message: 'HEALTHY',
       timestamp: new Date().toISOString(),
-    };
+    }
   }
 }

@@ -1,6 +1,6 @@
-import { Module } from '@nestjs/common';
-import { ConfigModule, ConfigService } from '@nestjs/config';
-import { TypeOrmModule } from '@nestjs/typeorm';
+import { Module } from '@nestjs/common'
+import { ConfigModule, ConfigService } from '@nestjs/config'
+import { TypeOrmModule } from '@nestjs/typeorm'
 
 @Module({
   imports: [
@@ -20,7 +20,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
           retryDelay: 10000,
           connectTimeoutMS: 10000,
           maxQueryExecutionTime: 5000,
-        };
+        }
       },
       inject: [ConfigService],
     }),

@@ -1,12 +1,12 @@
-import { Module } from '@nestjs/common';
-import { AuthService } from './auth.service';
-import { UsersModule } from '../users/users.module';
-import { PassportModule } from '@nestjs/passport';
-import { LocalStrategy } from './strategy/local.strategy';
-import { JwtModule } from '@nestjs/jwt';
-import { AuthController } from './auth.controller';
-import { ConfigModule, ConfigService } from '@nestjs/config';
-import { JwtStrategy } from './strategy/jwt.strategy';
+import { Module } from '@nestjs/common'
+import { AuthService } from './auth.service'
+import { UsersModule } from '../users/users.module'
+import { PassportModule } from '@nestjs/passport'
+import { LocalStrategy } from './strategy/local.strategy'
+import { JwtModule } from '@nestjs/jwt'
+import { AuthController } from './auth.controller'
+import { ConfigModule, ConfigService } from '@nestjs/config'
+import { JwtStrategy } from './strategy/jwt.strategy'
 // https://www.youtube.com/watch?v=wdsp7BNmJRc&ab_channel=MariusEspejo
 @Module({
   imports: [
