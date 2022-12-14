@@ -1,3 +1,3 @@
 {
-  "extends": ["custom", "next/core-web-vitals"]
+  "extends": ["@config/eslint-config-next"]
 }

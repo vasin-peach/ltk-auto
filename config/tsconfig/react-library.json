@@ -7,5 +7,10 @@
     "lib": ["ES2015"],
     "module": "ESNext",
     "target": "es6"
+  },
+  "parserOptions": {
+    "project": "tsconfig.json",
+    "tsconfigRootDir": "__dirname",
+    "sourceType": "module"
   }
 }
