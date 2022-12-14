@@ -11,7 +11,7 @@
   "dependencies": {
     "@ui/component": "workspace:*",
     "@libs/constant": "workspace:*",
-    "tsconfig": "workspace:*",
+    "@config/tsconfig": "workspace:*",
     "typescript": "*",
     "@config/eslint-config-next": "workspace:*",
     "@libs/helper": "workspace:*",

@@ -8,7 +8,7 @@
     "lint": "eslint *.ts*"
   },
   "devDependencies": {
-    "tsconfig": "workspace:*",
+    "@config/tsconfig": "workspace:*",
     "@config/eslint-config-react": "workspace:*",
     "typescript": "*",
     "@types/react": "^18.0.17",
