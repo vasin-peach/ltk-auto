@@ -1,6 +1,5 @@
 import Head from 'next/head'
 import Image from 'next/image'
-import Free from 'src/assets/images/Free.png'
 import AdvertiseSlider from 'src/components/AdvertiseSlider'
 import CarSearchMini from 'src/components/Car/SearchMini'
 import PreviewSlider from 'src/components/PreviewSlider'

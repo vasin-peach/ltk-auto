@@ -1,7 +1,7 @@
 import React from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import Image from 'next/image'
-import Preview from 'src/assets/images/preview.png'
+import Preview from '../assets/images/preview.png'
 
 import 'swiper/css'
 import 'swiper/css/navigation'

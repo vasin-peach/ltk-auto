@@ -2,7 +2,7 @@ import React from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Navigation, Pagination } from 'swiper'
 import Image from 'next/image'
-import Free from 'src/assets/images/Free.png'
+import Free from '../assets/images/free.png'
 
 import 'swiper/css'
 import 'swiper/css/navigation'

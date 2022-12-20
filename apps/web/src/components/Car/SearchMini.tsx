@@ -1,9 +1,9 @@
 import CarMini from './CarMini'
-import Car1 from 'src/assets/images/car1.png'
-import Car2 from 'src/assets/images/car2.png'
-import Car3 from 'src/assets/images/car3.png'
-import Car4 from 'src/assets/images/car4.png'
-import Car5 from 'src/assets/images/car5.png'
+import Car1 from '../assets/images/car1.png'
+import Car2 from '../assets/images/car2.png'
+import Car3 from '../assets/images/car3.png'
+import Car4 from '../assets/images/car4.png'
+import Car5 from '../assets/images/car5.png'
 import Link from 'next/link'
 
 export default function CarSearchMini() {
