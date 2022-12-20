@@ -4,10 +4,11 @@
   "main": "index.js",
   "license": "MIT",
   "dependencies": {
+    "eslint": "^7.23.0",
+    "eslint-config-next": "13.0.0",
     "eslint-config-prettier": "latest",
     "eslint-config-turbo": "latest",
-    "eslint": "^7.23.0",
-    "eslint-config-next": "13.0.0"
+    "prettier-plugin-tailwindcss": "^0.2.1"
   },
   "devDependencies": {
     "@config/tsconfig": "workspace:*",
