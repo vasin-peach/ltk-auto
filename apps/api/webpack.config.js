@@ -1,11 +1,11 @@
-const nodeExternals = require('webpack-node-externals');
+import nodeExternals from 'webpack-node-externals'
 
-module.exports = (config) => {
+export default (config) => {
   config.externals = [
     nodeExternals({
       allowlist: [/^@libs/],
     }),
-  ];
+  ]
 
-  return config;
-};
+  return config
+}

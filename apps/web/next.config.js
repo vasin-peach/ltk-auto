@@ -2,10 +2,10 @@
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
-  output: "standalone", // to bundle both client and server in the same docker image
+  output: 'standalone', // to bundle both client and server in the same docker image
   experimental: {
-    transpilePackages: ["@config/*", "@libs/*"],
+    transpilePackages: ['@config/*', '@libs/*', '@ui/*'],
   },
-};
+}
 
-module.exports = nextConfig;
+module.exports = nextConfig

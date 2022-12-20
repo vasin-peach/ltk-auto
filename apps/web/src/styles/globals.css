@@ -1,0 +1,30 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* -------------------------------- Gradient -------------------------------- */
+.gradient-primary {
+  @apply bg-gradient-to-tr from-primary-500 to-primary-400;
+}
+
+.gradient-brown {
+  @apply bg-gradient-to-tr from-brown-900 to-brown-500 text-slate-100;
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+  color: #fff !important;
+}
+
+.swiper-pagination-bullet {
+  @apply bg-primary-500/25 !important;
+  opacity: 1 !important;
+}
+
+.swiper-pagination-bullet-active {
+  @apply bg-primary-500 !important;
+}
+
+.swiper-pagination {
+  @apply container relative mx-auto md:text-left pb-5 !important;
+}

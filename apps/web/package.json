@@ -9,19 +9,30 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@ui/component": "workspace:*",
-    "@libs/constant": "workspace:*",
-    "@config/tsconfig": "workspace:*",
-    "typescript": "*",
     "@config/eslint-config-next": "workspace:*",
+    "@config/tsconfig": "workspace:*",
+    "@libs/constant": "workspace:*",
     "@libs/helper": "workspace:*",
+    "@next/font": "^13.0.7",
     "@types/node": "18.11.15",
     "@types/react": "18.0.26",
     "@types/react-dom": "18.0.9",
+    "@ui/component": "workspace:*",
     "eslint": "8.29.0",
     "eslint-config-next": "13.0.0",
     "next": "13.0.0",
     "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react-dom": "18.2.0",
+    "swiper": "^8.4.5",
+    "typescript": "*"
+  },
+  "devDependencies": {
+    "@tailwindcss/forms": "^0.5.3",
+    "@tailwindcss/typography": "^0.5.8",
+    "autoprefixer": "^10.4.13",
+    "eslint-plugin-tailwindcss": "^3.7.1",
+    "postcss": "^8.4.20",
+    "postcss-nested": "^6.0.0",
+    "tailwindcss": "^3.2.4"
   }
 }
