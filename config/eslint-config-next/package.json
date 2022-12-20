@@ -8,6 +8,7 @@
     "eslint-config-next": "13.0.0",
     "eslint-config-prettier": "latest",
     "eslint-config-turbo": "latest",
+    "eslint-plugin-tailwindcss": "latest",
     "prettier-plugin-tailwindcss": "^0.2.1"
   },
   "devDependencies": {
