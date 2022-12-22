@@ -1,14 +1,19 @@
-import CarMini from './CarMini'
 import Car1 from '../../assets/images/car1.png'
 import Car2 from '../../assets/images/car2.png'
 import Car3 from '../../assets/images/car3.png'
 import Car4 from '../../assets/images/car4.png'
 import Car5 from '../../assets/images/car5.png'
 import Link from 'next/link'
+import Car from './Car'
+import BG from '../../assets/images/bg.webp'
+import Image from 'next/image'
 
 export default function CarSearchMini() {
   return (
     <div className="car-search-mini relative z-10">
+      <div>
+        <Image src={BG} alt="bg" fill style={{ objectFit: 'cover' }} />
+      </div>
       <div className="container relative -top-5 mx-auto">
         <div className="car-search-mini-form grid grid-cols-6 gap-4">
           <div className="col-span-4 flex rounded-md shadow-lg lg:col-span-3">
@@ -32,14 +37,14 @@ export default function CarSearchMini() {
         </div>
 
         <div className="car-search-mini-content mt-10 grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4">
-          <CarMini src={Car1} />
-          <CarMini src={Car2} />
-          <CarMini src={Car3} />
-          <CarMini src={Car4} />
-          <CarMini src={Car5} />
-          <CarMini src={Car4} />
-          <CarMini src={Car2} />
-          <CarMini src={Car1} />
+          <Car src={Car1} />
+          <Car src={Car2} />
+          <Car src={Car3} />
+          <Car src={Car4} />
+          <Car src={Car5} />
+          <Car src={Car4} />
+          <Car src={Car2} />
+          <Car src={Car1} />
         </div>
 
         <div className="mt-5 text-center">

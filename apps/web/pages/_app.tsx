@@ -2,6 +2,9 @@ import 'src/styles/globals.css'
 import type { AppProps } from 'next/app'
 import { Noto_Sans_Thai, Roboto } from '@next/font/google'
 import Layout from './layout'
+import 'swiper/css'
+import 'swiper/css/navigation'
+import 'swiper/css/pagination'
 
 const notosans = Noto_Sans_Thai({
   variable: '--font-notosans',
