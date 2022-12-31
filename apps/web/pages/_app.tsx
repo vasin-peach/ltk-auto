@@ -20,7 +20,7 @@ const roboto = Roboto({
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
-    <main className={`${notosans.variable} ${roboto.variable} font-sans`}>
+    <main className={`${notosans.variable} ${roboto.variable}`}>
       <Layout>
         <Component {...pageProps} />
       </Layout>

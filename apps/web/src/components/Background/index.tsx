@@ -3,6 +3,7 @@ import { ReactNode } from 'react'
 
 export default function Background({
   children,
+  id,
   rounded,
   color,
   pattern,
@@ -10,6 +11,7 @@ export default function Background({
   style,
 }: {
   children: ReactNode
+  id?: string
   rounded?: string
   color?: string
   pattern?: StaticImageData
@@ -17,7 +19,7 @@ export default function Background({
   style?: JSX.IntrinsicElements['div']['style']
 }) {
   return (
-    <div className={`${className} relative`} style={style}>
+    <div id={id} className={`${className} relative`} style={style}>
       {pattern && (
         <Image
           src={pattern}

@@ -2,6 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ---------------------------------- Font ---------------------------------- */
+* {
+  font-family: var(--font-notosans);
+}
+
+a,
+.cursor-pointer {
+  @apply transition-all hover:opacity-75;
+}
 /* -------------------------------- Gradient -------------------------------- */
 .gradient-primary {
   @apply bg-gradient-to-tr from-primary-500 to-primary-400;
@@ -11,6 +20,7 @@
   @apply bg-gradient-to-tr from-brown-900 to-brown-500 text-slate-100;
 }
 
+/* --------------------------------- Swiper --------------------------------- */
 .swiper-button-next,
 .swiper-button-prev {
   color: #fff !important;
@@ -26,5 +36,5 @@
 }
 
 .swiper-pagination {
-  @apply container relative mx-auto md:text-left pb-5 !important;
+  @apply container relative mx-auto pb-5 md:text-left !important;
 }

@@ -2,8 +2,10 @@ import Link from 'next/link'
 import React, { useContext, useState } from 'react'
 import Image from 'next/image'
 import Logo from 'src/assets/images/logo.png'
+import { useRouter } from 'next/router'
 
 export default function Nav() {
+  const router = useRouter()
   return (
     <div
       className="nav-container relative z-10 text-slate-100  shadow-sm shadow-brown-300"
@@ -28,10 +30,32 @@ export default function Nav() {
       <div className="nav-secondary z-10 mx-auto bg-brown-600 py-3 text-neutral-300">
         <div className="container mx-auto flex justify-between">
           <div className="nav-menu grid grid-cols-4 gap-5">
-            <Link href="/">หน้าหลัก</Link>
-            <Link href="/cars">ค้นหารถ</Link>
-            <Link href="/service">บริการ</Link>
-            <Link href="/contact">ติดต่อเรา</Link>
+            <Link
+              href="/"
+              className={`${
+                ['/', '/landing'].includes(router.asPath) && 'text-white'
+              }`}
+            >
+              หน้าหลัก
+            </Link>
+            <Link
+              href="/cars"
+              className={`${router.asPath === '/cars' ? 'text-white' : ''}`}
+            >
+              ค้นหารถ
+            </Link>
+            <Link
+              href="/service"
+              className={`${router.asPath === '/service' ? 'text-white' : ''}`}
+            >
+              บริการ
+            </Link>
+            <Link
+              href="/contact"
+              className={`${router.asPath === '/contact' ? 'text-white' : ''}`}
+            >
+              ติดต่อเรา
+            </Link>
           </div>
           <div className="nav-action flex flex-row">
             <button>Start</button>
