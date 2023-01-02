@@ -6,13 +6,11 @@ import Free from '../assets/images/free.png'
 
 export default function AdvertiseSlider() {
   return (
-    <div className="advertish-slider-container gradient-brown">
+    <div className="advertish-slider-container gradient-brown ">
       <Swiper
         modules={[Navigation, Pagination]}
         slidesPerView={1}
         loop={true}
-        onSlideChange={() => console.log('slide change')}
-        onSwiper={(swiper: any) => console.log(swiper)}
         navigation
         pagination={{
           clickable: true,

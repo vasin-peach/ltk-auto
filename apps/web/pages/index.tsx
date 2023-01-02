@@ -1,26 +1,36 @@
 import Image from 'next/image'
 import AdvertiseSlider from 'src/components/AdvertiseSlider'
-import PreviewSlider from 'src/components/PreviewSlider'
 import BG from '../src/assets/images/bg.webp'
 import BGCurve from '../src/assets/images/background/bg-curve.png'
 import SectionService from 'src/components/Section/Service'
 import SectionFamily from 'src/components/Section/Family'
-import Background from 'src/components/Background'
+import Background from 'src/components/Background/Background'
 import blur from '../src/assets/images/background/blur.png'
 import SectionLocation from 'src/components/Section/Location'
-import SectionCars from 'src/components/Section/Cars'
+import SectionCars from 'src/components/Section/Car'
+import { SectionCarSlide } from 'src/components/Section/CarSlide'
+import SectionAdvertiseSlide from 'src/components/Section/AdvertiseSlide'
 
 export default function Home() {
   return (
     <div className=" relative">
-      <AdvertiseSlider />
+      {/* ----------------------------- Advertise Slide ---------------------------- */}
+      <Background
+        id="section-advertise-slide"
+        className="gradient-brown-lg bg-brown-900 pt-[60px] lg:pt-0"
+      >
+        <SectionAdvertiseSlide />
+      </Background>
 
       {/* ---------------------------------- Cars ---------------------------------- */}
       <Background id="section-cars" pattern={BG}>
-        <SectionCars className="container relative -top-5 mx-auto" />
+        <SectionCars className="container relative mx-auto pt-5 lg:-top-5 lg:pt-0" />
       </Background>
 
-      <PreviewSlider />
+      {/* -------------------------------- Car Slide ------------------------------- */}
+      <Background id="section-car-slide">
+        <SectionCarSlide />
+      </Background>
 
       {/* --------------------------------- Service -------------------------------- */}
       <Background

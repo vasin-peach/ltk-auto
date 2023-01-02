@@ -1,4 +1,4 @@
-import Background from './Background'
+import Background from './Background/Background'
 import Logo from 'src/assets/images/logo.png'
 import Image from 'next/image'
 import line from 'src/assets/images/icons/social/line.png'

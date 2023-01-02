@@ -1,0 +1,9 @@
+.sidebar-container {
+  .sidebar-overlay {
+    @apply fixed top-0 right-0 h-screen w-0 opacity-0 transition-all duration-300;
+  }
+
+  .sidebar-overlay.active {
+    @apply w-full opacity-100;
+  }
+}

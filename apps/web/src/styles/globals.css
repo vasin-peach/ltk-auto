@@ -16,13 +16,22 @@ a,
   @apply bg-gradient-to-tr from-primary-500 to-primary-400;
 }
 
+.gradient-primary2 {
+  @apply bg-gradient-to-tr from-primary-500 to-primary-300;
+}
+
 .gradient-brown {
   @apply bg-gradient-to-tr from-brown-900 to-brown-500 text-slate-100;
+}
+
+.gradient-brown-lg {
+  @apply lg:bg-gradient-to-tr lg:from-brown-900 lg:to-brown-500 text-slate-100;
 }
 
 /* --------------------------------- Swiper --------------------------------- */
 .swiper-button-next,
 .swiper-button-prev {
+  @apply hidden md:block !important;
   color: #fff !important;
 }
 

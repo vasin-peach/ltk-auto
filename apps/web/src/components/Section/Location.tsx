@@ -3,7 +3,7 @@ import location from '../../assets/images/location/location.png'
 import Map from '../../assets/images/location/map.png'
 import BackgroundBg from '../../assets/images/location/location_bg.png'
 import LocationOnIcon from '../../assets/images/icons/location_on.svg'
-import Background from '../Background'
+import Background from '../Background/Background'
 import { TiCalendar, TiLocation } from 'react-icons/ti'
 import { CommonComponentProps } from 'src/types/props'
 

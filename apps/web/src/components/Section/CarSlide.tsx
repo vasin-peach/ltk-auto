@@ -1,11 +1,11 @@
-import React from 'react'
+import { CommonComponentProps } from 'src/types/props'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import Image from 'next/image'
-import Preview from '../assets/images/preview.png'
+import Preview from 'src/assets/images/preview.png'
 
-export default function PreviewSlider() {
+export function SectionCarSlide(props: CommonComponentProps) {
   return (
-    <div className="preview-slider-container">
+    <div className={`section-car-slide ${props.className}`} {...props}>
       <Swiper
         slidesPerView={1}
         loop={true}
