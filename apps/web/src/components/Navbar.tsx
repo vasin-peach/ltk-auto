@@ -1,11 +1,10 @@
 import Link from 'next/link'
-import React, { useContext, useState } from 'react'
+import React from 'react'
 import Image from 'next/image'
 import Logo from 'src/assets/images/logo.png'
 import { useRouter } from 'next/router'
 import { TiStarFullOutline } from 'react-icons/ti'
 import { FaUserCircle } from 'react-icons/fa'
-import { BsFillTelephoneFill } from 'react-icons/bs'
 import { AiTwotonePhone } from 'react-icons/ai'
 
 export default function Nav() {
@@ -62,13 +61,13 @@ export default function Nav() {
               ค้นหารถ
             </Link>
             <Link
-              href="/service"
-              className={`${router.asPath === '/service' ? 'text-white' : ''}`}
+              href="/services"
+              className={`${router.asPath === '/services' ? 'text-white' : ''}`}
             >
               บริการ
             </Link>
             <Link
-              href="/finance/loan"
+              href="/calculator/loan"
               className={`${router.asPath === '/loan' ? 'text-white' : ''}`}
             >
               สินเชื่อรถ

@@ -102,15 +102,15 @@ export default function Sidebar(props: CommonComponentProps) {
             ค้นหารถ
           </Link>
           <Link
-            href="/service"
+            href="/services"
             className={`rounded-lg border border-neutral-600 px-4 py-3 ${
-              router.asPath === '/service' ? 'bg-slate-200 text-black-900' : ''
+              router.asPath === '/services' ? 'bg-slate-200 text-black-900' : ''
             }`}
           >
             บริการ
           </Link>
           <Link
-            href="/finance/loan"
+            href="/calculator/loan"
             className={`text-bl rounded-lg border border-neutral-600 px-4 py-3 ${
               router.asPath === '/loan' ? 'bg-slate-200 text-black-900' : ''
             }`}

@@ -139,10 +139,10 @@ export default function Footer({
           บริการของเรา
         </div>
         <div className="grid gap-1  text-sm text-neutral-400 md:mt-10 md:gap-3">
-          <Link href="/service/accessories">ตกแต่งรถ</Link>
+          <Link href="/services/accessories">ตกแต่งรถ</Link>
           <Link href="/promotion">โปรโมนชั่น</Link>
-          <Link href="/service/parts">ชิ้นส่วนรถ</Link>
-          <Link href="/finance/loan">คำนวนสินเชื่อรถ</Link>
+          <Link href="/services/parts">ชิ้นส่วนรถ</Link>
+          <Link href="/calculator/loan">คำนวนสินเชื่อรถ</Link>
         </div>
       </div>
     )

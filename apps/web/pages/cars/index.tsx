@@ -1,17 +1,22 @@
+import CarsHead from './head'
+
 export default function Cars() {
   const cars = ['car1', 'car2', 'car3']
   return (
-    <div>
-      <h1>Cars</h1>
+    <>
+      <CarsHead />
       <div>
-        {cars?.map((car) => {
-          return (
-            <a href={`/cars/${car}`}>
-              <div>{car}</div>
-            </a>
-          )
-        })}
+        <h1>Cars</h1>
+        <div>
+          {cars?.map((car) => {
+            return (
+              <a href={`/cars/${car}`}>
+                <div>{car}</div>
+              </a>
+            )
+          })}
+        </div>
       </div>
-    </div>
+    </>
   )
 }

@@ -7,6 +7,7 @@ import 'swiper/css'
 import 'swiper/css/navigation'
 import 'swiper/css/pagination'
 import { SidebarProvider } from 'src/context/SidebarContext'
+import DefaultHead from './head'
 
 const notosans = Noto_Sans_Thai({
   variable: '--font-notosans',
@@ -25,6 +26,7 @@ export default function App({ Component, pageProps }: AppProps) {
     <main className={`${notosans.variable} ${roboto.variable}`}>
       <SidebarProvider>
         <Layout>
+          <DefaultHead />
           <Component {...pageProps} />
         </Layout>
       </SidebarProvider>

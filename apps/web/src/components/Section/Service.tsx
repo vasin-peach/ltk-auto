@@ -50,14 +50,14 @@ export function ServiceList(props: CommonComponentProps) {
         <ServiceCard
           text="Accessories"
           icon={accessories}
-          href="/service/accessories"
+          href="/services/accessories"
         />
         <ServiceCard text="Promotion" icon={promotion} href="/promotion" />
-        <ServiceCard text="Order Parts" icon={order} href="/service/part" />
+        <ServiceCard text="Order Parts" icon={order} href="/services/parts" />
         <ServiceCard
           text="Finance Calculator"
           icon={finance}
-          href="/finance/loan"
+          href="/calculator/loan"
         />
       </div>
     </div>
@@ -76,7 +76,7 @@ export function ServiceCard(
       {...props}
       className={`${props.className} service-card rounded-lg bg-gradient-to-tr from-brown-900  to-brown-500 shadow-xl transition-all duration-300 hover:-translate-y-1 hover:opacity-90`}
     >
-      <Link href={props.href || '#'} scroll={false}>
+      <Link href={props.href || '#'}>
         <div className=" px-3 py-3 text-neutral-100 lg:px-5 lg:py-7">
           <Image
             src={props.icon}
