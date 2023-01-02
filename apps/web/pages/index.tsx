@@ -17,7 +17,7 @@ export default function Home() {
       {/* ----------------------------- Advertise Slide ---------------------------- */}
       <Background
         id="section-advertise-slide"
-        className="gradient-brown-lg bg-brown-900 pt-[60px] lg:pt-0"
+        className="gradient-brown-lg bg-brown-900 "
       >
         <SectionAdvertiseSlide />
       </Background>
