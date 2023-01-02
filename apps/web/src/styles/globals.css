@@ -11,6 +11,12 @@ a,
 .cursor-pointer {
   @apply transition-all hover:opacity-75;
 }
+input[type='range']::-webkit-slider-thumb {
+  cursor: pointer;
+  -webkit-appearance: none;
+  @apply h-4 w-4 rounded-full bg-primary-500 shadow-lg;
+}
+
 /* -------------------------------- Gradient -------------------------------- */
 .gradient-primary {
   @apply bg-gradient-to-tr from-primary-500 to-primary-400;
@@ -25,7 +31,7 @@ a,
 }
 
 .gradient-brown-lg {
-  @apply lg:bg-gradient-to-tr lg:from-brown-900 lg:to-brown-500 text-slate-100;
+  @apply text-slate-100 lg:bg-gradient-to-tr lg:from-brown-900 lg:to-brown-500;
 }
 
 /* --------------------------------- Swiper --------------------------------- */
@@ -45,5 +51,5 @@ a,
 }
 
 .swiper-pagination {
-  @apply container relative mx-auto md:text-left  hidden lg:block !important;
+  @apply container relative mx-auto hidden  md:text-left lg:block !important;
 }

@@ -8,6 +8,7 @@ import 'swiper/css/navigation'
 import 'swiper/css/pagination'
 import { SidebarProvider } from 'src/context/SidebarContext'
 import DefaultHead from './head'
+import { createTheme, ThemeProvider } from '@mui/material/styles'
 
 const notosans = Noto_Sans_Thai({
   variable: '--font-notosans',
@@ -21,15 +22,25 @@ const roboto = Roboto({
   style: 'normal',
 })
 
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: '#F2B33D',
+    },
+  },
+})
+
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <main className={`${notosans.variable} ${roboto.variable}`}>
-      <SidebarProvider>
-        <Layout>
-          <DefaultHead />
-          <Component {...pageProps} />
-        </Layout>
-      </SidebarProvider>
+      <ThemeProvider theme={theme}>
+        <SidebarProvider>
+          <Layout>
+            <DefaultHead />
+            <Component {...pageProps} />
+          </Layout>
+        </SidebarProvider>
+      </ThemeProvider>
     </main>
   )
 }

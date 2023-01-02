@@ -14,7 +14,7 @@ export default function DefaultHead() {
         />
         <meta
           name="keywords"
-          content="ltkauto, auto, cars, new cars, pre-owned, hybrid vehicles, luxury vehicles, sedans, suvs, used cars"
+          content="ltkauto, auto, cars, new cars, pre-owned, hybrid vehicles, luxury vehicles, electric vehicles, sedans, suvs, used cars"
         />
         <link
           rel="apple-touch-icon"

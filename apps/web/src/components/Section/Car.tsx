@@ -113,7 +113,7 @@ export default function SectionCar(props: CommonComponentProps) {
       </form>
 
       {/* Car list */}
-      <div className="mt-10 grid grid-cols-2 gap-4 md:grid-cols-2 lg:grid-cols-4">
+      <div className="mt-10 grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4">
         <Car src={Car1} href={'/cars/1'} />
         <Car src={Car2} href={'/cars/2'} />
         <Car src={Car3} href={'/cars/3'} />
@@ -122,10 +122,6 @@ export default function SectionCar(props: CommonComponentProps) {
         <Car src={Car4} href={'/cars/4'} />
         <Car src={Car2} href={'/cars/2'} />
         <Car src={Car1} href={'/cars/1'} />
-        <Car src={Car1} href={'/cars/1'} />
-        <Car src={Car2} href={'/cars/2'} />
-        <Car src={Car3} href={'/cars/3'} />
-        <Car src={Car4} href={'/cars/4'} />
       </div>
 
       <div className="mt-5 pb-5">
