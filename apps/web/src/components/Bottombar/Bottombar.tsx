@@ -19,7 +19,7 @@ export default function Bottombar(props: CommonComponentProps) {
 
   /* ---------------------------------- Doms ---------------------------------- */
   return (
-    <div className={`bottombar-container ${props.className || ''}`} {...props}>
+    <div className={`bottombar-container lg:hidden ${props.className || ''}`} {...props}>
       <div className="bottombar-overlay fixed bottom-0 left-0 right-0 z-20 text-white">
         <div className="bottombar-wrapper grid grid-cols-4 border-t-2 border-brown-500 bg-brown-900 py-2 text-center text-xs">
           <Link href="/">

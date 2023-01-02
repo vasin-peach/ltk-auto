@@ -45,5 +45,5 @@ a,
 }
 
 .swiper-pagination {
-  @apply container relative mx-auto pb-5 md:text-left !important;
+  @apply container relative mx-auto md:text-left  hidden lg:block !important;
 }

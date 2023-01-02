@@ -4,7 +4,6 @@ import { CommonComponentProps } from 'src/types/props'
 import avatar from 'src/assets/images/brands/benz.png'
 import { FiMoreHorizontal } from 'react-icons/fi'
 import Image from 'next/image'
-import { TiStarFullOutline } from 'react-icons/ti'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 
@@ -36,31 +35,45 @@ export default function Sidebar(props: CommonComponentProps) {
     return (
       <div className="px-7">
         <div className="sidebar-header rounded-xl bg-gradient-to-tr from-primary-500 to-primary-400 p-5">
-          <div className="header-avatar flex items-center">
-            <Image
-              src={avatar}
-              alt="avatar-image"
-              className="h-[50px] w-[50px] rounded-full bg-black-900 object-cover"
-            />
-            <div className="flex w-full items-center justify-between">
-              <div className="ml-4 max-w-[45vw] truncate text-xl font-bold text-black-900">
-                Peaches
+          {true ? (
+            <>
+              <div className="header-avatar flex items-center">
+                <Image
+                  src={avatar}
+                  alt="avatar-image"
+                  className="h-[50px] w-[50px] rounded-full bg-black-900 object-cover"
+                />
+                <div className="flex w-full items-center justify-between">
+                  <div className="ml-4 max-w-[45vw] truncate text-xl font-bold text-black-900">
+                    Peaches
+                  </div>
+                  <div
+                    className="flex h-[35px] w-[35px] cursor-pointer items-center justify-center rounded-full bg-white shadow-lg"
+                    aria-expanded="true"
+                    aria-haspopup="true"
+                  >
+                    <FiMoreHorizontal className="text-neutral-700" />
+                  </div>
+                </div>
               </div>
-              <div
-                className="flex h-[35px] w-[35px] cursor-pointer items-center justify-center rounded-full bg-white shadow-lg"
-                aria-expanded="true"
-                aria-haspopup="true"
-              >
-                <FiMoreHorizontal className="text-neutral-700" />
+              <div className="header-avatar-info mt-5 text-black-900">
+                <div className="flex items-center">
+                  <span className="mr-5 underline">รถที่บันทึกไว้ </span>
+                  <span className="font-bold">2</span>
+                </div>
               </div>
-            </div>
-          </div>
-          <div className="header-avatar-info mt-5 text-black-900">
-            <div className="flex items-center">
-              <span className="mr-5 underline">รถที่บันทึกไว้ </span>
-              <span className="font-bold">2</span>
-            </div>
-          </div>
+            </>
+          ) : (
+            <>
+              <Link href="/account/login">
+                <div className="flex items-center rounded-xl">
+                  <button className="mx-auto block truncate">
+                    ลงทะเบียน / เข้าสู่ระบบ
+                  </button>
+                </div>
+              </Link>
+            </>
+          )}
         </div>
       </div>
     )
