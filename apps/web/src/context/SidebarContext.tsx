@@ -18,19 +18,20 @@ export const SidebarProvider = ({ children }: { children: ReactNode }) => {
   let xStart = 0
   let xCurrent = 0
   let xDiff = 0
-  let threshold = 50
+  let threshold = 70
 
   /* --------------------------------- Methods -------------------------------- */
   const toogleActive = () => setActive(!active)
 
-  const handleTouchStart = (e: TouchEvent) => {
-    const getTouches = (e: TouchEvent) => e.touches
+  const handleTouchStart = (e: any) => {
+    if (e.target.closest('.swiper')) return
+    const getTouches = (e: any) => e.touches
     const firstTouch = getTouches(e)[0]
     xStart = firstTouch.clientX
   }
 
-  const handleTouchMove = (e: TouchEvent) => {
-    if (!xStart) return
+  const handleTouchMove = (e: any) => {
+    if (!xStart || e.target.closest('.swiper')) return
 
     xCurrent = e.touches[0].clientX
     xDiff = xStart - xCurrent
@@ -45,9 +46,8 @@ export const SidebarProvider = ({ children }: { children: ReactNode }) => {
   // https://stackoverflow.com/questions/2264072/detect-a-finger-swipe-through-javascript-on-the-iphone-and-android
   const swipeListen = () => {
     if (isListener) return
-    const container = document.querySelectorAll('body *:not(.swiper), body *:not(.swiper *)')[0] as HTMLElement
-    container.addEventListener('touchstart', handleTouchStart, false)
-    container.addEventListener('touchmove', handleTouchMove, false)
+    document.addEventListener('touchstart', handleTouchStart, false)
+    document.addEventListener('touchmove', handleTouchMove, false)
     isListener = true
   }
 
