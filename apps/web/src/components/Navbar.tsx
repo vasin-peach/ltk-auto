@@ -10,7 +10,7 @@ export default function Nav() {
   const router = useRouter()
   return (
     <div
-      className="nav-container absolute left-0 right-0 z-10 pt-2 text-slate-100 lg:relative lg:pt-0 lg:shadow-sm lg:shadow-brown-300"
+      className="nav-container absolute left-0 right-0 z-10 text-slate-100 lg:relative lg:pt-0 lg:shadow-sm lg:shadow-brown-300"
       id="nav"
     >
       <div className="nav-primary z-20 mx-auto py-3 lg:bg-brown-900 lg:shadow-lg">
