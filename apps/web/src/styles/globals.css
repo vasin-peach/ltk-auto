@@ -53,3 +53,9 @@ input[type='range']::-webkit-slider-thumb {
 .swiper-pagination {
   @apply container relative mx-auto hidden  md:text-left lg:block !important;
 }
+.swiper-slide {
+  @apply transition-opacity !important;
+}
+.swiper-slide-thumb-active {
+  @apply opacity-75;
+}
