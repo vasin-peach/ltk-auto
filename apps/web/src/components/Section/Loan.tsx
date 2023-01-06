@@ -89,9 +89,9 @@ export default function SectionLoan({
         </div>
 
         {/* Cac */}
-        <div className="col-span-2 grid divide-y rounded-b-lg bg-white p-10 px-5 md:grid-cols-2 md:divide-x lg:divide-y-0 lg:rounded-r-lg">
+        <div className="col-span-2 grid divide-y rounded-b-lg bg-white p-10 px-5 md:grid-cols-2 md:divide-x md:divide-y-0 lg:rounded-r-lg">
           {/* calc summary */}
-          <div className="pb-5 lg:pr-5 lg:pb-0">
+          <div className="pb-5 md:pr-5 lg:pb-0">
             <div className="text-xl">คำนวนสินเชื่อรถยนต์</div>
             <div className="text-neutral-500">คำผ่อนชำระต่อเดือน</div>
             <div className="py-5 text-3xl font-bold">
