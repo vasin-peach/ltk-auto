@@ -23,6 +23,10 @@ export class TypeOrmExceptionFilter implements ExceptionFilter {
     const method = request.method.toUpperCase()
     const url = request.url
     const ip = request.ip
+    const excludePaths = ['redirect']
+
+    if (excludePaths.find((path) => url.includes(path)))
+      return response.redirect(`${process.env.CLIENT_URL}/signin`)
 
     response.status(HttpStatus.INTERNAL_SERVER_ERROR).json({
       statusCode: HttpStatus.INTERNAL_SERVER_ERROR,

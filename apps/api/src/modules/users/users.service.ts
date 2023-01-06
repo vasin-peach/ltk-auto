@@ -16,14 +16,16 @@ export class UsersService {
   ) {}
 
   async create(createUserDto: CreateUserDto) {
-    // hash password and re-assign to dto
-    const password = await hashPassword(createUserDto.password)
-    createUserDto = { ...createUserDto, password }
+    if (createUserDto.password) {
+      // hash password and re-assign to dto
+      const password = await hashPassword(createUserDto.password)
+      createUserDto = { ...createUserDto, password }
+    }
 
     // create user
     const data = await this.usersRepository.save({
       ...createUserDto,
-      role: roleEnum.GUEST,
+      role: roleEnum.MEMBER,
     })
     return data
   }

@@ -26,7 +26,7 @@ describe('UsersController', () => {
       id: '01faa5bf-4f07-4493-8969-fca0f5029656',
       email: 'mock01@email.com',
       password: 'password01',
-      role: roleEnum.GUEST,
+      role: roleEnum.MEMBER,
       name: 'mock01',
     }
   })

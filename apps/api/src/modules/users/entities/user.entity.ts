@@ -20,10 +20,10 @@ export class User {
   email: string
 
   @Exclude()
-  @Column()
-  password: string
+  @Column({ nullable: true })
+  password?: string
 
-  @Column({ type: 'smallint', default: roleEnum.GUEST })
+  @Column({ type: 'smallint', default: roleEnum.MEMBER })
   @ApiProperty({ example: '<role>' })
   role: roleEnum
 

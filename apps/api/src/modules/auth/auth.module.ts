@@ -7,6 +7,7 @@ import { JwtModule } from '@nestjs/jwt'
 import { AuthController } from './auth.controller'
 import { ConfigModule, ConfigService } from '@nestjs/config'
 import { JwtStrategy } from './strategy/jwt.strategy'
+import { GoogleStrategy } from './strategy/google.strategy'
 // https://www.youtube.com/watch?v=wdsp7BNmJRc&ab_channel=MariusEspejo
 @Module({
   imports: [
@@ -23,7 +24,7 @@ import { JwtStrategy } from './strategy/jwt.strategy'
     }),
   ],
 
-  providers: [AuthService, LocalStrategy, JwtStrategy],
+  providers: [AuthService, LocalStrategy, JwtStrategy, GoogleStrategy],
   controllers: [AuthController],
 })
 export class AuthModule {}

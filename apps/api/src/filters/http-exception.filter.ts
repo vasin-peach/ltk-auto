@@ -19,10 +19,15 @@ export class HttpExceptionFilter implements ExceptionFilter {
     const response = ctx.getResponse<Response>()
     const request = ctx.getRequest<Request>()
     const status = exception.getStatus()
+    const next = ctx.getNext()
 
     const method = request.method.toUpperCase()
     const url = request.url
     const ip = request.ip
+    const excludePaths = ['redirect']
+
+    if (excludePaths.find((path) => url.includes(path)))
+      return response.redirect(`${process.env.CLIENT_URL}/signin`)
 
     // extract exception content
     const exceptionResponse = exception.getResponse() as Record<string, any>

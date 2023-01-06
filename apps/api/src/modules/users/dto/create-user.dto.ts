@@ -16,7 +16,7 @@ export class CreateUserDto {
     example: '<your_password>',
     nullable: true,
   })
-  readonly password: string
+  readonly password?: string
 
   @IsNotEmpty()
   @IsString()

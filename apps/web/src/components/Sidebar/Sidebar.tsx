@@ -65,7 +65,7 @@ export default function Sidebar(props: CommonComponentProps) {
             </>
           ) : (
             <>
-              <Link href="/account/login">
+              <Link href="/signin">
                 <div className="flex items-center rounded-xl">
                   <button className="mx-auto block truncate">
                     ลงทะเบียน / เข้าสู่ระบบ

@@ -32,7 +32,7 @@ export default function Nav() {
                 <TiStarFullOutline />
               </div>
             </Link>
-            <Link href="/login">
+            <Link href="/signin">
               <div className="ml-3 flex h-[35px] items-center rounded-xl bg-neutral-500/50 px-5 py-1">
                 <button className="block truncate">
                   ลงทะเบียน / เข้าสู่ระบบ
