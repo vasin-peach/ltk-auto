@@ -54,10 +54,10 @@ export default function SectionLoan({
   /* --------------------------------- Methods -------------------------------- */
   const calculateInstallment = useCallback(() => {
     const financingAmount = loanAmount - down // ยอดจัด
-    const interestRateAmount = financingAmount * (interestRate / 100)
+    const interestRateAmount = financingAmount * (interestRate / 100) // ดอกเบี้ยต่อปี
     const taxIntallmentAmount = interestRateAmount * tax
     const interestInstallmentAmount =
-      (interestRateAmount + taxIntallmentAmount) / term
+      (interestRateAmount + taxIntallmentAmount) / (term / 12)
     setInstallment(interestInstallmentAmount)
   }, [down, interestRate, loanAmount, tax, term])
 
