@@ -30,6 +30,7 @@ import Background from 'src/components/Background/Background'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import swiper, { FreeMode, Navigation, Pagination, Thumbs } from 'swiper'
 import { useState } from 'react'
+import SectionLoan from 'src/components/Section/Loan'
 
 export default function Car(props: CommonComponentProps) {
   const router = useRouter()
@@ -111,7 +112,13 @@ export default function Car(props: CommonComponentProps) {
   /* ---------------------------------- Doms ---------------------------------- */
   return (
     <>
-      <CarHead />
+      <CarHead
+        title={'Nissan Fairlady Z400 3.0 Twin Turbo V6 2022'}
+        desc={
+          'Nissan Fairlady Z400 รถ Sport coupe ใหม่ล่าสุดจากค่าย Nissan มาพร้อมกับเครื่องยนต์ V6 Twin Turbo มีให้คุณเลือกด้วยกัน 5 สี พร้อมให้ทุกท่านสั่งจองกันแล้ววันนี้ ที่โชว์รูม LTK AUTO IMPORT'
+        }
+        image={advertise01.src}
+      />
       <div className={`car-container ${props.className || ''}`} {...props}>
         {/* Info */}
         <Background className="car-info" id="car-info" pattern={BG}>
@@ -258,17 +265,17 @@ export default function Car(props: CommonComponentProps) {
             </div>
 
             {/* context */}
-            <div className=" mt-10 grid grid-cols-1 gap-x-10 gap-y-2 lg:gap-y-5 lg:grid-cols-2">
+            <div className=" mt-10 grid grid-cols-1 gap-x-10 gap-y-2 lg:grid-cols-2 lg:gap-y-5">
               {details.map((detail) => (
                 <div
                   key={detail.name}
-                  className="grid grid-cols-2 lg:text-sm xl:text-base border-b border-neutral-200 pb-2 lg:pb-0"
+                  className="grid grid-cols-2 border-b border-neutral-200 pb-2 lg:pb-0 lg:text-sm xl:text-base"
                 >
                   <div className="flex items-center text-neutral-500">
                     <span className="text-primary-500">{detail.icon}</span>{' '}
                     <span className="pl-2">{detail.name}</span>
                   </div>
-                  <div className="flex items-center justify-end text-right font-bold pr-2 lg:pr-0">
+                  <div className="flex items-center justify-end pr-2 text-right font-bold lg:pr-0">
                     {detail.value}
                   </div>
                 </div>
@@ -283,13 +290,49 @@ export default function Car(props: CommonComponentProps) {
           id="car-preview"
         >
           <div className="container py-10">
-            Nissan Fairlady Z400 3.0 Twin Turbo V6 2022
+            <div>
+              <div className="mx-auto lg:w-2/3 ">
+                <div className="text-lg font-bold lg:text-center lg:text-2xl">
+                  Nissan Fairlady Z400 3.0 Twin Turbo V6 2022
+                </div>
+                <div className="pb-10 pt-5 text-neutral-500">
+                  Nissan Fairlady Z400 รถ Sport coupe ใหม่ล่าสุดจากค่าย Nissan
+                  มาพร้อมกับเครื่องยนต์ V6 Twin Turbo มีให้คุณเลือกด้วยกัน 5 สี
+                  พร้อมให้ทุกท่านสั่งจองกันแล้ววันนี้ ที่โชว์รูม LTK AUTO IMPORT
+                </div>
+              </div>
+              <Image src={advertise01} alt="" />
+            </div>
+            <div className="mt-5 lg:mt-10">
+              <div className="mx-auto lg:w-2/3 ">
+                <div className="text-lg font-bold lg:text-center lg:text-2xl">
+                  Nissan Fairlady Z400 3.0 Twin Turbo V6 2022
+                </div>
+                <div className="pb-10 pt-5 text-neutral-500">
+                  Nissan Fairlady Z400 รถ Sport coupe ใหม่ล่าสุดจากค่าย Nissan
+                  มาพร้อมกับเครื่องยนต์ V6 Twin Turbo มีให้คุณเลือกด้วยกัน 5 สี
+                  พร้อมให้ทุกท่านสั่งจองกันแล้ววันนี้ ที่โชว์รูม LTK AUTO IMPORT
+                </div>
+              </div>
+              <Image src={advertise02} alt="" />
+            </div>
+            <div className="mt-5 lg:mt-10">
+              <div className="mx-auto lg:w-2/3 ">
+                <div className="pb-10 pt-5 text-neutral-500">
+                  Nissan Fairlady Z400 รถ Sport coupe ใหม่ล่าสุดจากค่าย Nissan
+                  มาพร้อมกับเครื่องยนต์ V6 Twin Turbo มีให้คุณเลือกด้วยกัน 5 สี
+                  พร้อมให้ทุกท่านสั่งจองกันแล้ววันนี้ ที่โชว์รูม LTK AUTO IMPORT
+                </div>
+              </div>
+            </div>
           </div>
         </div>
 
         {/* Finance Loan */}
         <div className="car-loan bg-slate-200" id="car-loan">
-          <div className="container py-10">คำนวนสินเชื่อรถยนต์</div>
+          <div className="container py-14">
+            <SectionLoan values={{ loanAmount: 5390000 }} />
+          </div>
         </div>
 
         {/* Others */}
