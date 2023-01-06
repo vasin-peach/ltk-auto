@@ -1,4 +1,3 @@
-import { comparePassword } from '@libs/helper'
 import {
   BadRequestException,
   Injectable,
@@ -6,6 +5,7 @@ import {
 } from '@nestjs/common'
 import { JwtService } from '@nestjs/jwt'
 import { instanceToPlain } from 'class-transformer'
+import { comparePassword } from 'src/helper/hash.helper'
 import { User } from '../users/entities/user.entity'
 import { UsersService } from '../users/users.service'
 

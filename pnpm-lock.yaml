@@ -47,6 +47,7 @@ importers:
       '@types/supertest': ^2.0.11
       '@typescript-eslint/eslint-plugin': ^5.0.0
       '@typescript-eslint/parser': ^5.0.0
+      bcryptjs: ^2.4.3
       cache-manager: ^4.1.0
       class-transformer: ^0.5.1
       class-validator: ^0.13.2
@@ -76,8 +77,6 @@ importers:
       typescript: ^4.3.5
       webpack-node-externals: ^3.0.0
     dependencies:
-      '@libs/constant': link:../../libs/constant
-      '@libs/helper': link:../../libs/helper
       '@nestjs/common': 9.2.1_wfccvjmrxsdt24lpjkvzmt5igm
       '@nestjs/config': 2.2.0_wqmgrsh4vfci5e6jx45m6crmsi
       '@nestjs/core': 9.2.1_ajc4cvdydchgvxyi4xnoij5t4i
@@ -88,6 +87,7 @@ importers:
       '@nestjs/swagger': 6.1.4_zvabycmw733xee3ikaxv4c7mny
       '@nestjs/typeorm': 9.0.1_mftfacht74hczh4so74rsxvzxq
       '@types/dotenv': 8.2.0
+      bcryptjs: 2.4.3
       cache-manager: 4.1.0
       class-transformer: 0.5.1
       class-validator: 0.13.2
@@ -106,6 +106,8 @@ importers:
     devDependencies:
       '@config/eslint-config-nest': link:../../config/eslint-config-nest
       '@config/tsconfig': link:../../config/tsconfig
+      '@libs/constant': link:../../libs/constant
+      '@libs/helper': link:../../libs/helper
       '@nestjs/cli': 9.1.5
       '@nestjs/schematics': 9.0.3_typescript@4.9.4
       '@nestjs/testing': 9.2.1_wdbvfsxfdwzlwdfiyh2gynjl4m
@@ -259,7 +261,7 @@ importers:
       '@types/react': 18.0.26
       '@types/react-dom': 18.0.9
       eslint: 8.29.0
-      eslint-config-prettier: 8.5.0_eslint@8.29.0
+      eslint-config-prettier: 8.6.0_eslint@8.29.0
       eslint-config-turbo: 0.0.7_eslint@8.29.0
       eslint-plugin-import: 2.26.0_z7hwuz3w5sq2sbhy7d4iqrnsvq
       eslint-plugin-n: 15.6.0_eslint@8.29.0
@@ -288,7 +290,7 @@ importers:
 
   libs/helper:
     specifiers:
-      '@config/tsconfig': workspace:*
+      '@config/tsconfig': '*'
       '@types/bcryptjs': ^2.4.2
       '@types/node': ^16.0.0
       bcryptjs: ^2.4.3
@@ -5387,6 +5389,15 @@ packages:
       eslint: '>=7.0.0'
     dependencies:
       eslint: 8.29.0
+
+  /eslint-config-prettier/8.6.0_eslint@8.29.0:
+    resolution: {integrity: sha512-bAF0eLpLVqP5oEVUFKpMA+NnRFICwn9X8B5jrR9FcqnYBuPbqWEjTEspPWMj5ye6czoSLDweCzSo3Ko7gGrZaA==}
+    hasBin: true
+    peerDependencies:
+      eslint: '>=7.0.0'
+    dependencies:
+      eslint: 8.29.0
+    dev: false
 
   /eslint-config-turbo/0.0.7_eslint@7.32.0:
     resolution: {integrity: sha512-WbrGlyfs94rOXrhombi1wjIAYGdV2iosgJRndOZtmDQeq5GLTzYmBUCJQZWtLBEBUPCj96RxZ2OL7Cn+xv/Azg==}

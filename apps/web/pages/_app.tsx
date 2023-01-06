@@ -9,6 +9,7 @@ import 'swiper/css/pagination'
 import { SidebarProvider } from 'src/context/SidebarContext'
 import DefaultHead from './head'
 import { createTheme, ThemeProvider } from '@mui/material/styles'
+import { hashPassword } from '@libs/helper'
 
 const notosans = Noto_Sans_Thai({
   variable: '--font-notosans',

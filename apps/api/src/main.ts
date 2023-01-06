@@ -7,7 +7,7 @@ import {
 import initSwagger from './config/swagger'
 import { NestFactory } from '@nestjs/core'
 import { AppModule } from './app.module'
-import * as cookieParser from 'cookie-parser'
+import cookieParser from 'cookie-parser'
 import helmet from 'helmet'
 import { HttpExceptionFilter } from './filters/http-exception.filter'
 import { TypeOrmExceptionFilter } from './filters/typeorm-exception.filter'

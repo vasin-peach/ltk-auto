@@ -1,12 +1,17 @@
 {
   "name": "@libs/helper",
-  "devDependencies": {
-    "@types/bcryptjs": "^2.4.2",
-    "@types/node": "^16.0.0",
-    "@config/tsconfig": "workspace:*",
-    "typescript": "^4.3.5"
+  "type": "commonjs",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3"
+  },
+  "devDependencies": {
+    "@config/tsconfig": "*",
+    "@types/bcryptjs": "^2.4.2",
+    "@types/node": "^16.0.0",
+    "typescript": "^4.3.5"
   }
 }

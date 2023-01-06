@@ -11,7 +11,7 @@ export default function Layout({ children }: { children: ReactNode }) {
       <Sidebar />
       <Navbar />
       <Bottombar />
-      <main className="min-h-screen">{children}</main>
+      <main>{children}</main>
       <Footer />
     </div>
   )

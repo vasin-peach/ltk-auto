@@ -8,7 +8,8 @@
 }
 
 a,
-.cursor-pointer {
+.cursor-pointer,
+button {
   @apply transition-all hover:opacity-75;
 }
 input[type='range']::-webkit-slider-thumb {

@@ -1,5 +1,9 @@
 {
   "name": "@libs/constant",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc"
+  },
   "devDependencies": {
     "@config/tsconfig": "workspace:*",
     "@types/node": "^16.0.0",
