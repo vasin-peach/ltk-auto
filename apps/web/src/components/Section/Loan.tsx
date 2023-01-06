@@ -18,7 +18,7 @@ const SliderStyles = styled(Slider)({
   },
   '& .MuiSlider-markLabel': {
     fontSize: '0.7rem',
-    top: '20px',
+    top: '30px',
     color: '#737373',
   },
   '& .MuiSlider-track': {
@@ -77,9 +77,9 @@ export default function SectionLoan({
   /* ---------------------------------- Doms ---------------------------------- */
   return (
     <div className={`${props?.className || ''} section-loan`} {...props}>
-      <div className="grid grid-cols-3 rounded-lg border border-neutral-300 shadow-xl ">
+      <div className="grid grid-cols-1 rounded-lg border border-neutral-300 shadow-xl lg:grid-cols-3 ">
         {/* Title */}
-        <div className="gradient-brown 10 col-span-1 flex items-center rounded-l-lg text-center text-3xl font-bold">
+        <div className="gradient-brown 10 col-span-1 flex items-center rounded-t-lg p-5 text-center text-3xl font-bold lg:rounded-l-lg">
           <div className="mx-auto inline-block">
             <div className="mb-3 border-b-4 border-primary-500 pb-3">
               คำนวนสินเชื่อ
@@ -89,9 +89,9 @@ export default function SectionLoan({
         </div>
 
         {/* Cac */}
-        <div className="col-span-2 grid grid-cols-2 divide-x rounded-r-lg bg-white p-10 px-5">
+        <div className="col-span-2 grid divide-y rounded-b-lg bg-white p-10 px-5 md:grid-cols-2 md:divide-x lg:divide-y-0 lg:rounded-r-lg">
           {/* calc summary */}
-          <div className="pr-5">
+          <div className="pb-5 lg:pr-5 lg:pb-0">
             <div className="text-xl">คำนวนสินเชื่อรถยนต์</div>
             <div className="text-neutral-500">คำผ่อนชำระต่อเดือน</div>
             <div className="py-5 text-3xl font-bold">
@@ -106,9 +106,24 @@ export default function SectionLoan({
                 / เดือน
               </span>
             </div>
-            <div className="flex justify-between">
+            <div className="flex items-center justify-between text-sm">
               <div className="text-neutral-600">ยอดเงินกู้</div>
-              <div className="font-bold">฿ {loanAmount.toLocaleString()}</div>
+              {/* <div className="font-bold">฿ {loanAmount.toLocaleString()}</div> */}
+              <div className="flex w-[140px] rounded-lg border border-neutral-300 shadow-md">
+                <input
+                  type="number"
+                  id="search-dropdown"
+                  step={1}
+                  className="w-full rounded-l-lg border-none p-2 pr-0 text-sm focus:border-none focus:shadow-none focus:outline-none focus:ring-0"
+                  placeholder="ค้นหาตามชื่อรถ, รุ่น, ยี่ห้อ, ปี"
+                  value={loanAmount}
+                  min={1}
+                  onChange={(e) => setLoanAmount(+e.target.value)}
+                />
+                <label className="inline-flex items-center rounded-r-lg bg-white pl-3 pr-2">
+                  ฿
+                </label>
+              </div>
             </div>
             <div className="mt-3 text-sm text-neutral-400">
               หมายเหตุ : การคำนวณนี้เป็นการประมาณยอด
@@ -117,7 +132,7 @@ export default function SectionLoan({
           </div>
 
           {/* calc actions */}
-          <div className="flex flex-col justify-between pl-5 text-sm">
+          <div className="flex flex-col justify-between pl-5 pt-5 text-sm lg:pt-0">
             <div>
               {/* อัตราดอกเบี้ย */}
               <div className="grid grid-cols-2 items-center gap-5">

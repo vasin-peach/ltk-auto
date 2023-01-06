@@ -235,10 +235,10 @@ export default function Car(props: CommonComponentProps) {
               </div>
               {/* Action */}
               <div className="mt-5 grid grid-cols-2 gap-2 text-base lg:text-xs xl:text-base">
-                <div className="flex items-center rounded bg-slate-300 p-2 px-2 shadow-md lg:p-1 xl:p-2">
+                <div className="flex items-center rounded bg-slate-200 p-2 px-2 shadow-md lg:p-1 xl:p-2">
                   <TiPhone className="mr-1 text-lg" /> 062-323-2932
                 </div>
-                <div className="flex cursor-pointer items-center rounded bg-green-400 p-1 px-2 text-white shadow-md">
+                <div className="flex cursor-pointer items-center rounded bg-green-500 p-1 px-2 text-white shadow-md">
                   <Image
                     src={line}
                     alt="line-icon"
@@ -330,7 +330,7 @@ export default function Car(props: CommonComponentProps) {
 
         {/* Finance Loan */}
         <div className="car-loan bg-slate-200" id="car-loan">
-          <div className="container py-14">
+          <div className="container py-5 lg:py-14">
             <SectionLoan values={{ loanAmount: 5390000 }} />
           </div>
         </div>
