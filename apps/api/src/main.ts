@@ -58,6 +58,8 @@ async function bootstrap() {
     // app.use(csurf());
     app.use(helmet())
     app.enableCors({ origin: process.env.CORS_ORIGIN })
+  } else {
+    app.enableCors({ origin: 'http://localhost:3000' })
   }
 
   initSwagger(app)

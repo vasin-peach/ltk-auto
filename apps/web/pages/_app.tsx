@@ -9,7 +9,9 @@ import 'swiper/css/pagination'
 import { SidebarProvider } from 'src/context/SidebarContext'
 import DefaultHead from './head'
 import { createTheme, ThemeProvider } from '@mui/material/styles'
-import { hashPassword } from '@libs/helper'
+import { SnackbarProvider } from 'src/context/SnackbarContext'
+import { CookiesProvider } from 'react-cookie'
+import { AuthProvider } from 'src/context/AuthContext'
 
 const notosans = Noto_Sans_Thai({
   variable: '--font-notosans',
@@ -34,14 +36,18 @@ const theme = createTheme({
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <main className={`${notosans.variable} ${roboto.variable}`}>
-      <ThemeProvider theme={theme}>
-        <SidebarProvider>
-          <Layout>
-            <DefaultHead />
-            <Component {...pageProps} />
-          </Layout>
-        </SidebarProvider>
-      </ThemeProvider>
+      <AuthProvider>
+        <ThemeProvider theme={theme}>
+          <SidebarProvider>
+            <SnackbarProvider>
+              <Layout>
+                <DefaultHead />
+                <Component {...pageProps} />
+              </Layout>
+            </SnackbarProvider>
+          </SidebarProvider>
+        </ThemeProvider>
+      </AuthProvider>
     </main>
   )
 }

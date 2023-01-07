@@ -8,6 +8,7 @@ import {
   Req,
   Get,
   Res,
+  NotFoundException,
 } from '@nestjs/common'
 import { ApiOperation, ApiTags } from '@nestjs/swagger'
 import { UsersService } from '../users/users.service'
@@ -33,7 +34,7 @@ export class AuthController {
     if (req.session.accessToken) {
       return { data: { accessToken: req.session.accessToken } }
     }
-    return
+    throw new NotFoundException()
   }
 
   @Post('signin')
@@ -54,24 +55,9 @@ export class AuthController {
   @Get('signin/google/redirect')
   @UseGuards(GoogleOAuthGuard)
   async googleAuthRedirect(@Request() req, @Res() res) {
-    // check is user exist
-    const isEmailExist = await this.usersService.findOne({
-      email: req.user.email,
-    })
-    if (!isEmailExist) {
-      const { email, firstName, lastName } = req.user
-      const payload = { email, name: `${firstName} ${lastName}` }
-      await this.usersService.create(payload)
-    }
-
-    // find user agin
-    const { id, email, name, role } = await this.usersService.findOne({
-      email: req.user.email,
-    })
-    const payload = { id, email, name, role }
-    const data = this.authService.signIn(payload)
-    req.session.accessToken = data.accessToken
-
-    return res.redirect(`${process.env.CLIENT_URL}/signin`)
+    const { accessToken } = await this.authService.signInGoogle(req)
+    return res.redirect(
+      `${process.env.CLIENT_URL}/signin?access_token=${accessToken}`,
+    )
   }
 }
