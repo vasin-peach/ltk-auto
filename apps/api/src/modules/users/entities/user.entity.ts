@@ -31,6 +31,10 @@ export class User {
   @ApiProperty({ example: '<name>' })
   name: string
 
+  @Column({ nullable: true })
+  @ApiProperty({ example: '<image>' })
+  image?: string
+
   @CreateDateColumn()
   @ApiProperty({ example: '2022-04-07 15:06:28.475' })
   createdAt?: Date

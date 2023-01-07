@@ -6,6 +6,13 @@ const nextConfig = {
   experimental: {
     transpilePackages: ['@config/*', '@libs/*', '@ui/*'],
   },
+  images: {
+    remotePatterns: [
+      {
+        hostname: '*.googleusercontent.com',
+      },
+    ],
+  },
   webpack(config) {
     config.module.rules.push({
       test: /\.svg$/,

@@ -37,6 +37,7 @@ export class AuthService {
 
   signIn(data: User) {
     const payload = data
+
     return {
       accessToken: this.jwtService.sign(payload),
     }
@@ -47,21 +48,26 @@ export class AuthService {
     const isEmailExist = await this.usersService.findOne({
       email: req.user.email,
     })
+    
 
     // create account if not exist
     if (!isEmailExist) {
-      const { email, firstName, lastName } = req.user
-      const payload = { email, name: `${firstName} ${lastName}` }
+      const { email, firstName, lastName, picture } = req.user
+      const payload = {
+        email,
+        name: `${firstName} ${lastName}`,
+        image: picture,
+      }
       await this.usersService.create(payload)
     }
 
     // find user agin
-    const { id, email, name, role } = await this.usersService.findOne({
+    const { id, email, name, role, image } = await this.usersService.findOne({
       email: req.user.email,
     })
 
     // sign jwt
-    const payload = { id, email, name, role }
+    const payload = { id, email, name, role, image }
     const data = this.signIn(payload)
 
     // save session

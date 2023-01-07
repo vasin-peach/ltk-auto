@@ -6,9 +6,13 @@ import { FiMoreHorizontal } from 'react-icons/fi'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
+import { AuthContext } from 'src/context/AuthContext'
+import { FaUserCircle } from 'react-icons/fa'
+import { AiFillCloseCircle } from 'react-icons/ai'
 
 export default function Sidebar(props: CommonComponentProps) {
   /* --------------------------------- States --------------------------------- */
+  const { signout, user } = useContext(AuthContext)
   const { active, setActive, swipeListen, removeSwipeListen } =
     useContext(SidebarContext)
   const router = useRouter()
@@ -24,7 +28,7 @@ export default function Sidebar(props: CommonComponentProps) {
     return () => {
       removeSwipeListen()
     }
-  }, [])
+  }, [router])
 
   useEffect(() => {
     setActive(false)
@@ -34,30 +38,35 @@ export default function Sidebar(props: CommonComponentProps) {
   const SidebarHeader = () => {
     return (
       <div className="px-7">
+        <AiFillCloseCircle
+          className="ml-auto translate-y-4 translate-x-2 cursor-pointer text-2xl text-slate-100 shadow-xl"
+          onClick={() => setActive(false)}
+        />
         <div className="sidebar-header rounded-xl bg-gradient-to-tr from-primary-500 to-primary-400 p-5">
-          {true ? (
+          {user && user.id ? (
             <>
               <div className="header-avatar flex items-center">
-                <Image
-                  src={avatar}
-                  alt="avatar-image"
-                  className="h-[50px] w-[50px] rounded-full bg-black-900 object-cover"
-                />
+                {user.image ? (
+                  <Image
+                    src={user.image}
+                    alt="avatar-image"
+                    className="rounded-full bg-black-900 object-cover"
+                    width={50}
+                    height={50}
+                  />
+                ) : (
+                  <FaUserCircle className="mr-2 text-[50px]" />
+                )}
+
                 <div className="flex w-full items-center justify-between">
-                  <div className="ml-4 max-w-[45vw] truncate text-xl font-bold text-black-900">
-                    Peaches
-                  </div>
-                  <div
-                    className="flex h-[35px] w-[35px] cursor-pointer items-center justify-center rounded-full bg-white shadow-lg"
-                    aria-expanded="true"
-                    aria-haspopup="true"
-                  >
-                    <FiMoreHorizontal className="text-neutral-700" />
+                  <div className="ml-4 max-w-[100%] truncate text-xl font-bold text-black-900">
+                    {user.name}
                   </div>
                 </div>
               </div>
+
               <div className="header-avatar-info mt-5 text-black-900">
-                <div className="flex items-center">
+                <div className="mt-5 flex items-center">
                   <span className="mr-5 underline">รถที่บันทึกไว้ </span>
                   <span className="font-bold">2</span>
                 </div>
@@ -65,7 +74,7 @@ export default function Sidebar(props: CommonComponentProps) {
             </>
           ) : (
             <>
-              <Link href="/signin">
+              <Link href="/signin" onClick={() => setActive(false)}>
                 <div className="flex items-center rounded-xl">
                   <button className="mx-auto block truncate">
                     ลงทะเบียน / เข้าสู่ระบบ
@@ -87,8 +96,9 @@ export default function Sidebar(props: CommonComponentProps) {
           <Link
             href="/"
             className={`rounded-lg border border-neutral-600 px-4 py-3 ${
-              ['/', '/landing', ''].includes(router.asPath) &&
-              'bg-slate-200 text-black-900'
+              ['/', '/landing', ''].includes(router.asPath)
+                ? 'bg-slate-200 text-black-900'
+                : ''
             }`}
           >
             หน้าหลัก
@@ -125,6 +135,14 @@ export default function Sidebar(props: CommonComponentProps) {
           >
             ติดต่อเรา
           </Link>
+          <div
+            className="rounded-lg border  border-red-300/50 px-4 py-3 text-red-300/50"
+            onClick={() => {
+              signout(), setActive(false)
+            }}
+          >
+            ออกจากระบบ
+          </div>
         </div>
       </div>
     )

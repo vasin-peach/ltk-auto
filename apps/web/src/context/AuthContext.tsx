@@ -4,6 +4,7 @@ import {
   useState,
   useEffect,
   useCallback,
+  useContext,
 } from 'react'
 import { RoleEnum } from '@libs/constant'
 import { useCookies } from 'react-cookie'
@@ -14,6 +15,7 @@ interface IUser {
   email?: string
   name?: string
   role: RoleEnum
+  image?: string
 }
 const defaultState = {
   user: {
@@ -21,8 +23,11 @@ const defaultState = {
     email: undefined,
     name: undefined,
     role: RoleEnum.GUEST,
+    image: undefined,
   } as IUser,
   loading: false,
+  signout: () => {},
+  singin: (accessToken: string) => {},
 }
 
 export const AuthContext = createContext(defaultState)
@@ -31,7 +36,10 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [loading, setLoading] = useState(defaultState.loading)
   const [accessToken, setAccessToken] = useState<string>()
   const [user, setUser] = useState<IUser>(defaultState.user)
-  const [cookies, setCookie] = useCookies(['access_token', 'refresh_token'])
+  const [cookies, setCookie, removeCookie] = useCookies([
+    'access_token',
+    'refresh_token',
+  ])
   const router = useRouter()
   const query = router.query
 
@@ -49,15 +57,29 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       const res = await stream.json()
       setUser(res.data)
     } catch (e) {
+      signout()
     } finally {
       setLoading(false)
     }
   }, [accessToken])
 
   const handleSaveToken = useCallback(() => {
-    if (query.access_token) setCookie('access_token', query.access_token)
-    setAccessToken(cookies.access_token)
-  }, [])
+    if ((!query.access_token && !cookies.access_token) || accessToken) return
+    singin((query.access_token || cookies.access_token) as string)
+    router.replace('/', undefined, { shallow: true })
+  }, [router, query.access_token])
+
+  const signout = async () => {
+    if (cookies.access_token) removeCookie('access_token')
+    if (user.id) setUser(defaultState.user)
+    if (accessToken) setAccessToken(undefined)
+    router.push('/signin')
+  }
+
+  const singin = async (accessToken: string) => {
+    setCookie('access_token', accessToken)
+    setAccessToken(accessToken as string)
+  }
 
   /* --------------------------------- Watches -------------------------------- */
   useEffect(() => {
@@ -66,7 +88,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   }, [handleFetchUser, handleSaveToken])
 
   return (
-    <AuthContext.Provider value={{ user, loading }}>
+    <AuthContext.Provider value={{ user, loading, signout, singin }}>
       {children}
     </AuthContext.Provider>
   )

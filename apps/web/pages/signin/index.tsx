@@ -13,10 +13,12 @@ import { SnackbarContext } from 'src/context/SnackbarContext'
 import { AuthGuard } from 'src/context/AuthGuard'
 import { RoleEnum } from '@libs/constant'
 import { NextRequest } from 'next/server'
+import { AuthContext } from 'src/context/AuthContext'
 
 export default function Signin(props: CommonComponentProps) {
   /* --------------------------------- States --------------------------------- */
   const { states, setStates } = useContext(SnackbarContext)
+  const { singin } = useContext(AuthContext)
   const [email, setEmail] = useState<{ value: string; error: boolean }>({
     value: '',
     error: false,
@@ -40,6 +42,7 @@ export default function Signin(props: CommonComponentProps) {
           password: password.value,
         },
       )
+      resp.data.data.accessToken && singin(resp.data.data.accessToken)
     } catch (e: any) {
       const message: string = e.response?.data?.error || e.message
       setEmail({ ...email, error: true })
@@ -67,7 +70,7 @@ export default function Signin(props: CommonComponentProps) {
         <Background pattern={BG}>
           <div
             id="signin-page"
-            className={`signin-page flex h-screen justify-center p-5 pt-20 ${
+            className={`signin-page flex h-[calc(100vh_-_124px)] items-center justify-center p-5 lg:h-[calc(100vh_-_108px)] ${
               props.className || ''
             }`}
             {...props}
@@ -78,7 +81,7 @@ export default function Signin(props: CommonComponentProps) {
             >
               <form
                 id="signin-form"
-                className="bg-white p-10"
+                className="rounded-lg bg-white p-10"
                 onSubmit={handleLocalSignin}
               >
                 <div id="form-title">

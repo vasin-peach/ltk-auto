@@ -57,7 +57,7 @@ export class AuthController {
   async googleAuthRedirect(@Request() req, @Res() res) {
     const { accessToken } = await this.authService.signInGoogle(req)
     return res.redirect(
-      `${process.env.CLIENT_URL}/signin?access_token=${accessToken}`,
+      `${process.env.CLIENT_URL}/?access_token=${accessToken}`,
     )
   }
 }
