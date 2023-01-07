@@ -48,7 +48,6 @@ export class AuthService {
     const isEmailExist = await this.usersService.findOne({
       email: req.user.email,
     })
-    
 
     // create account if not exist
     if (!isEmailExist) {
