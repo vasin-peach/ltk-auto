@@ -1,23 +1,31 @@
-import { useContext, useEffect, useState } from 'react'
+import { useCallback, useContext, useEffect, useState } from 'react'
 import SidebarContext from 'src/context/SidebarContext'
 import { CommonComponentProps } from 'src/types/props'
-import avatar from 'src/assets/images/brands/benz.png'
-import { FiMoreHorizontal } from 'react-icons/fi'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { AuthContext } from 'src/context/AuthContext'
 import { FaUserCircle } from 'react-icons/fa'
 import { AiFillCloseCircle } from 'react-icons/ai'
+import { RoleEnum } from '@libs/constant'
 
 export default function Sidebar(props: CommonComponentProps) {
   /* --------------------------------- States --------------------------------- */
   const { signout, user } = useContext(AuthContext)
+  const [activeRoute, setActiveRoute] = useState('')
   const { active, setActive, swipeListen, removeSwipeListen } =
     useContext(SidebarContext)
   const router = useRouter()
 
   /* --------------------------------- Method --------------------------------- */
+  const handleRouterReady = useCallback(() => {
+    if (!router.isReady) return
+    setActiveRoute(router.pathname)
+  }, [router.isReady, router.pathname])
+
+  const isRouteActive = (route: string) => {
+    return activeRoute.includes(route)
+  }
 
   /* --------------------------------- Watches -------------------------------- */
   useEffect(() => {
@@ -33,6 +41,10 @@ export default function Sidebar(props: CommonComponentProps) {
   useEffect(() => {
     setActive(false)
   }, [router.asPath])
+
+  useEffect(() => {
+    handleRouterReady()
+  }, [handleRouterReady])
 
   /* ---------------------------------- Doms ---------------------------------- */
   const SidebarHeader = () => {
@@ -106,7 +118,7 @@ export default function Sidebar(props: CommonComponentProps) {
           <Link
             href="/cars"
             className={`rounded-lg border border-neutral-600 px-4 py-3 ${
-              router.asPath === '/cars' ? 'bg-slate-200 text-black-900' : ''
+              isRouteActive('cars') ? 'bg-slate-200 text-black-900' : ''
             }`}
           >
             ค้นหารถ
@@ -114,7 +126,7 @@ export default function Sidebar(props: CommonComponentProps) {
           <Link
             href="/services"
             className={`rounded-lg border border-neutral-600 px-4 py-3 ${
-              router.asPath === '/services' ? 'bg-slate-200 text-black-900' : ''
+              isRouteActive('services') ? 'bg-slate-200 text-black-900' : ''
             }`}
           >
             บริการ
@@ -122,7 +134,7 @@ export default function Sidebar(props: CommonComponentProps) {
           <Link
             href="/calculator/loan"
             className={`text-bl rounded-lg border border-neutral-600 px-4 py-3 ${
-              router.asPath === '/loan' ? 'bg-slate-200 text-black-900' : ''
+              isRouteActive('loan') ? 'bg-slate-200 text-black-900' : ''
             }`}
           >
             สินเชื่อรถ
@@ -130,11 +142,22 @@ export default function Sidebar(props: CommonComponentProps) {
           <Link
             href="/contact"
             className={`rounded-lg border border-neutral-600 px-4 py-3 ${
-              router.asPath === '/contact' ? 'bg-slate-200 text-black-900' : ''
+              isRouteActive('contact') ? 'bg-slate-200 text-black-900' : ''
             }`}
           >
             ติดต่อเรา
           </Link>
+
+          {user.role >= RoleEnum.MAINTAINER && (
+            <Link
+              href="/dashboard"
+              className={`rounded-lg border border-neutral-600 px-4 py-3 ${
+                isRouteActive('dashboard') ? 'bg-slate-200 text-black-900' : ''
+              }`}
+            >
+              แดชบอร์ด
+            </Link>
+          )}
           <div
             className="rounded-lg border  border-red-300/50 px-4 py-3 text-red-300/50"
             onClick={() => {

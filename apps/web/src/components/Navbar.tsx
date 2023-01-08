@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import React, { useContext, useState } from 'react'
+import React, { useCallback, useContext, useEffect, useState } from 'react'
 import Image from 'next/image'
 import Logo from 'src/assets/images/logo.png'
 import { useRouter } from 'next/router'
@@ -9,11 +9,13 @@ import { AiTwotonePhone } from 'react-icons/ai'
 import { AuthContext } from 'src/context/AuthContext'
 import { Menu, Skeleton } from '@mui/material'
 import SidebarContext from 'src/context/SidebarContext'
+import { RoleEnum } from '@libs/constant'
 
 export default function Nav() {
   /* --------------------------------- States --------------------------------- */
   const { user, loading, signout } = useContext(AuthContext)
-  const { active, setActive } = useContext(SidebarContext)
+  const [activeRoute, setActiveRoute] = useState('')
+  const { setActive } = useContext(SidebarContext)
   const router = useRouter()
 
   // profile
@@ -27,6 +29,19 @@ export default function Nav() {
   const handleCloseProfile = () => {
     setAnchorEl(null)
   }
+  const handleRouterReady = useCallback(() => {
+    if (!router.isReady) return
+    setActiveRoute(router.pathname)
+  }, [router.isReady, router.pathname])
+
+  const isRouteActive = (route: string) => {
+    return activeRoute.includes(route)
+  }
+
+  /* --------------------------------- Watches -------------------------------- */
+  useEffect(() => {
+    handleRouterReady()
+  }, [handleRouterReady])
 
   /* ---------------------------------- Doms ---------------------------------- */
   return (
@@ -132,7 +147,7 @@ export default function Nav() {
       </div>
       <div className="nav-secondary z-10 mx-auto hidden bg-brown-600 py-3 text-neutral-300 lg:block">
         <div className="container mx-auto flex justify-between">
-          <div className="nav-menu grid grid-cols-5 gap-7">
+          <div className="nav-menu grid grid-cols-6 gap-7">
             <Link
               href="/"
               className={`${
@@ -143,28 +158,36 @@ export default function Nav() {
             </Link>
             <Link
               href="/cars"
-              className={`${router.asPath === '/cars' ? 'text-white' : ''}`}
+              className={isRouteActive('cars') ? 'text-white' : ''}
             >
               ค้นหารถ
             </Link>
             <Link
               href="/services"
-              className={`${router.asPath === '/services' ? 'text-white' : ''}`}
+              className={isRouteActive('services') ? 'text-white' : ''}
             >
               บริการ
             </Link>
             <Link
               href="/calculator/loan"
-              className={`${router.asPath === '/loan' ? 'text-white' : ''}`}
+              className={isRouteActive('loan') ? 'text-white' : ''}
             >
               สินเชื่อรถ
             </Link>
             <Link
               href="/contact"
-              className={`${router.asPath === '/contact' ? 'text-white' : ''}`}
+              className={isRouteActive('contact') ? 'text-white' : ''}
             >
               ติดต่อเรา
             </Link>
+            {user.role >= RoleEnum.MAINTAINER && (
+              <Link
+                href="/dashboard"
+                className={isRouteActive('dashboard') ? 'text-white' : ''}
+              >
+                แดชบอร์ด
+              </Link>
+            )}
           </div>
           <div className="nav-action flex items-center text-sm text-neutral-400">
             <AiTwotonePhone />
