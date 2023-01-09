@@ -6,7 +6,6 @@ import {
   ForbiddenException,
 } from '@nestjs/common'
 import { Reflector } from '@nestjs/core'
-import { roleEnum } from '../../../common/constants/enum'
 import { ROLE_KEY } from '../decorators/roles.decorator'
 
 @Injectable()
@@ -29,7 +28,7 @@ export class RoleGuard implements CanActivate {
     if (user?.role < requiredRole)
       throw new ForbiddenException({
         error: [
-          `your role must be greater than or equal to '${roleEnum[requiredRole]}'`,
+          `your role must be greater than or equal to '${RoleEnum[requiredRole]}'`,
         ],
       })
 

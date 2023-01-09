@@ -1,6 +1,6 @@
+import { RoleEnum } from '@libs/constant'
 import { ApiProperty } from '@nestjs/swagger'
 import { IsEmail, IsEnum, IsOptional, IsString } from 'class-validator'
-import { roleEnum } from '../../../common/constants/enum'
 
 export class UpdateUserDto {
   @IsOptional()
@@ -20,13 +20,13 @@ export class UpdateUserDto {
   readonly password?: string
 
   @IsOptional()
-  @IsEnum(roleEnum)
+  @IsEnum(RoleEnum)
   @ApiProperty({
     example: '<your_role>',
     nullable: true,
-    enum: roleEnum,
+    enum: RoleEnum,
   })
-  readonly role?: roleEnum
+  readonly role?: RoleEnum
 
   @IsOptional()
   @IsString()

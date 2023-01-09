@@ -1,11 +1,10 @@
-import nodeExternals from 'webpack-node-externals'
+/* eslint-disable @typescript-eslint/no-var-requires */
+const nodeExternals = require('webpack-node-externals')
 
-export default (config) => {
-  config.externals = [
+module.exports = {
+  externals: [
     nodeExternals({
-      allowlist: [/^@libs/,],
+      allowlist: [/^@libs/],
     }),
-  ]
-
-  return config
+  ],
 }

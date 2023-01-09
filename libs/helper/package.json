@@ -1,7 +1,6 @@
 {
   "name": "@libs/helper",
   "type": "commonjs",
-  "main": "dist/index.js",
   "scripts": {
     "build": "tsc"
   },

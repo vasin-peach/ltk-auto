@@ -1,6 +1,5 @@
 {
   "name": "@libs/constant",
-  "main": "dist/index.js",
   "scripts": {
     "build": "tsc"
   },

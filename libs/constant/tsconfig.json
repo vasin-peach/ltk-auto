@@ -1,5 +1,5 @@
 {
-  "extends": "@config/tsconfig/nestjs.json",
+  "extends": "@config/tsconfig/ts.json",
   "compilerOptions": {
     "outDir": "dist",
     "allowJs": true

@@ -5,8 +5,8 @@ import { FindOptionsWhere, Repository } from 'typeorm'
 import { CreateUserDto } from './dto/create-user.dto'
 import { UpdateUserDto } from './dto/update-user.dto'
 import { User } from './entities/user.entity'
-import { roleEnum } from '../../common/constants/enum'
 import { hashPassword } from '@libs/helper'
+import { RoleEnum } from '@libs/constant'
 
 @Injectable()
 export class UsersService {
@@ -25,7 +25,7 @@ export class UsersService {
     // create user
     const data = await this.usersRepository.save({
       ...createUserDto,
-      role: roleEnum.MEMBER,
+      role: RoleEnum.MEMBER,
     })
     return data
   }
