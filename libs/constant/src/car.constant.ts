@@ -25,3 +25,44 @@ export enum CarFuel {
   ELECTRIC = 'ไฟฟ้า',
   GAS = 'แก๊ส',
 }
+
+export interface IBrand {
+  id?: string
+  name: string
+  image: string
+  cars: ICar[]
+  createdAt?: Date
+  updatedAt?: Date
+}
+
+export interface ICar {
+  id?: string
+  name: string
+  condition: CarCondition
+  image: string
+  previewImages: string[]
+  brand?: IBrand
+  year: string
+  door?: number
+  seat?: number
+  body?: CarBody
+  transmission: string
+  fuel?: CarFuel
+  engineType?: string
+  engineName?: string
+  engineCc?: number
+  peakPower?: number
+  peakTorque?: number
+  lengthMm?: number
+  widthMm?: number
+  heightMm?: number
+  frontThread?: number
+  rearThread?: number
+  fuelTank?: number
+  frontTyre?: string
+  rearTyre?: string
+  frontRim?: string
+  rearRim?: string
+  createdAt?: Date
+  updatedAt?: Date
+}

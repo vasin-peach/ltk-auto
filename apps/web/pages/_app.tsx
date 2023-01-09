@@ -12,6 +12,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles'
 import { SnackbarProvider } from 'src/context/SnackbarContext'
 import { CookiesProvider } from 'react-cookie'
 import { AuthProvider } from 'src/context/AuthContext'
+import { StoreProvider } from 'src/context/StoreContext'
 
 const notosans = Noto_Sans_Thai({
   variable: '--font-notosans',
@@ -40,10 +41,12 @@ export default function App({ Component, pageProps }: AppProps) {
         <ThemeProvider theme={theme}>
           <SidebarProvider>
             <SnackbarProvider>
-              <Layout>
-                <DefaultHead />
-                <Component {...pageProps} />
-              </Layout>
+              <StoreProvider>
+                <Layout>
+                  <DefaultHead />
+                  <Component {...pageProps} />
+                </Layout>
+              </StoreProvider>
             </SnackbarProvider>
           </SidebarProvider>
         </ThemeProvider>

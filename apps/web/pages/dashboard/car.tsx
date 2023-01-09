@@ -1,4 +1,11 @@
-import { ChangeEvent, useState } from 'react'
+import {
+  ChangeEvent,
+  useCallback,
+  useContext,
+  useEffect,
+  useMemo,
+  useState,
+} from 'react'
 import Layout from './layout'
 import cheverolet from 'src/assets/images/brands/cheverolet.png'
 import benz from 'src/assets/images/brands/benz.png'
@@ -10,6 +17,7 @@ import nissan from 'src/assets/images/brands/nissan.png'
 import nyundai from 'src/assets/images/brands/nyundai.png'
 import porsche from 'src/assets/images/brands/porsche.png'
 import Car1 from 'src/assets/images/car1.png'
+import fetch from 'next'
 import { TiZoomOutline } from 'react-icons/ti'
 import {
   Checkbox,
@@ -19,6 +27,14 @@ import {
   styled,
 } from '@mui/material'
 import Car from 'src/components/Car/Car'
+import axios from 'axios'
+import {
+  maxPrice,
+  minPrice,
+  stepPrice,
+  StoreContext,
+} from 'src/context/StoreContext'
+import debounce from 'lodash.debounce'
 
 const SliderStyles = styled(Slider)({
   '& .MuiSlider-thumb': {
@@ -38,33 +54,44 @@ const SliderStyles = styled(Slider)({
 
 export default function DashboardCar() {
   /* --------------------------------- States --------------------------------- */
-  const minPrice = 0
-  const maxPrice = 10000000
-  const stepPrice = 1000000
-  const [search, setSearch] = useState<string>()
-  const [brand, setBrand] = useState<string>()
-  const [color, setColor] = useState<string>()
-  const [prices, setPrices] = useState<number[]>([minPrice, stepPrice * 2])
-  const [brands, setBrands] = useState([
-    { id: 'cheverolet', src: cheverolet },
-    { id: 'benz', src: benz },
-    { id: 'bmw', src: bmw },
-    { id: 'subaru', src: subaru },
-    { id: 'toyota', src: toyota },
-    { id: 'lexus', src: lexus },
-    { id: 'nissan', src: nissan },
-    { id: 'nyundai', src: nyundai },
-    { id: 'porsche', src: porsche },
-  ])
+  const {
+    cars,
+    brands,
+    selectSearch,
+    selectPrices,
+    selectBrands,
+    brandLoading,
+    carLoading,
+    handleFetchCars,
+    handleFetchBrands,
+    setSelectSearch,
+    setSelectPrices,
+    setSelectBrands,
+  } = useContext(StoreContext)
 
   /* --------------------------------- Methods -------------------------------- */
   const handleSearch = (e: ChangeEvent<HTMLInputElement>) => {
-    setSearch(e.target.value)
+    setSelectSearch(e.target.value)
   }
   const handlePrice = (e: Event, val: number | number[]) => {
-    setPrices(val as number[])
+    setSelectPrices(val as number[])
   }
+
+  // const handler = useCallback([])
+
   /* --------------------------------- Watches -------------------------------- */
+  useEffect(() => {
+    handleFetchCars()
+  }, [handleFetchCars])
+
+  useEffect(() => {
+    handleFetchBrands()
+  }, [])
+
+  // useEffect(() => {
+  //   handler()
+  // }, [selectSearch])
+
   /* ---------------------------------- Doms ---------------------------------- */
   return (
     <Layout>
@@ -86,7 +113,7 @@ export default function DashboardCar() {
                   id="search-dropdown"
                   className="w-full rounded-r-lg border-none pl-0 focus:border-none focus:shadow-none focus:outline-none focus:ring-0"
                   placeholder="ค้นหาตามชื่อรถ, รุ่น, ยี่ห้อ, ปี"
-                  value={search}
+                  value={selectSearch}
                   onChange={handleSearch}
                 />
               </div>
@@ -98,13 +125,13 @@ export default function DashboardCar() {
               >
                 <>
                   <div className="flex justify-between text-xs">
-                    <span>{prices[0].toLocaleString()}฿</span>
-                    <span>{prices[1].toLocaleString()}฿</span>
+                    <span>{selectPrices[0].toLocaleString()}฿</span>
+                    <span>{selectPrices[1].toLocaleString()}฿</span>
                   </div>
                   <SliderStyles
                     size="small"
                     getAriaLabel={() => 'Price ranges'}
-                    value={prices}
+                    value={selectPrices}
                     onChange={handlePrice}
                     valueLabelDisplay="auto"
                     min={minPrice}
@@ -137,7 +164,7 @@ export default function DashboardCar() {
               </div>
             </form>
           </div>
-          <div className="col-span-4 w-full grid lg:grid-cols-4 md:grid-cols-2 gap-5">
+          <div className="col-span-4 grid w-full gap-5 md:grid-cols-2 lg:grid-cols-4">
             <Car src={Car1} href={'/cars/1'} />
             <Car src={Car1} href={'/cars/1'} />
             <Car src={Car1} href={'/cars/1'} />
