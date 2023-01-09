@@ -3,6 +3,7 @@ import { Storage } from '@google-cloud/storage'
 import gcloudConstant from '@libs/constant/src/gcloud.constant'
 import stream from 'stream'
 import { DeleteOptions } from '@google-cloud/storage/build/src/nodejs-common/service-object'
+import * as crypto from 'crypto'
 
 @Injectable()
 export class StorageService {
