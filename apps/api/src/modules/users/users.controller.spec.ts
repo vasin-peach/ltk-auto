@@ -1,8 +1,8 @@
+import { RoleEnum } from '@libs/constant'
 import { comparePassword } from '@libs/helper'
 import { Test } from '@nestjs/testing'
 import { TypeOrmModule } from '@nestjs/typeorm'
 import { instanceToPlain } from 'class-transformer'
-import { roleEnum } from '../../common/constants/enum'
 import { DatabaseMockModule } from '../../config/database/memory/provider.module'
 import { User } from './entities/user.entity'
 import { UsersController } from './users.controller'
@@ -27,7 +27,7 @@ describe('UsersController', () => {
       email: 'mock01@email.com',
       password: 'password01',
       image: 'fewfwe',
-      role: roleEnum.MEMBER,
+      role: RoleEnum.MEMBER,
       name: 'mock01',
     }
   })
