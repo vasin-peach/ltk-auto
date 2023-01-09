@@ -11,7 +11,7 @@ RUN yarn global add pnpm turbo
 # Set working directory
 WORKDIR /app
 COPY . .
-RUN turbo prune --scope=api --docker
+RUN turbo prune --scope=web --docker
 
 # ---------------------------------------------------------------------------- #
 #                                   Installer                                  #
@@ -31,15 +31,10 @@ RUN pnpm install
 # Build the project
 COPY --from=builder /app/out/full .
 COPY turbo.json turbo.json
-RUN pnpm turbo run build --filter=api...
-
-# Set NODE_ENV environment variable
-ENV NODE_ENV production
-
-
+RUN pnpm turbo run build --filter=web...
 
 # ---------------------------------------------------------------------------- #
 #                                    Runner                                    #
 # ---------------------------------------------------------------------------- #
-WORKDIR /app/apps/api
-CMD [ "node", "dist/main" ]
+WORKDIR /app/apps/web
+CMD [ "pnpm", "start" ]
