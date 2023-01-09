@@ -18,6 +18,5 @@ import { Brand } from './entities/brand'
       useClass: RoleGuard,
     },
   ],
-  exports: [],
 })
 export class BrandsModule {}

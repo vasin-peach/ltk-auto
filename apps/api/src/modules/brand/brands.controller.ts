@@ -40,28 +40,8 @@ import { BrandsService } from './brands.service'
 import { CreateBrandDto } from './dto/create.dto'
 import { UpdateBrandDto } from './dto/update.dto'
 import { FileInterceptor } from '@nestjs/platform-express'
-import { UploadBrandDto } from './dto/upload.dto'
 import { StorageService } from '../storage/storage.service'
-import { diskStorage } from 'multer'
-import { extname } from 'path'
 import gcloudConstant from '@libs/constant/src/gcloud.constant'
-
-const editFileName = (req, file, callback) => {
-  const name = file.originalname.split('.')[0]
-  const fileExtName = extname(file.originalname)
-  const randomName = Array(4)
-    .fill(null)
-    .map(() => Math.round(Math.random() * 16).toString(16))
-    .join('')
-  callback(null, `${name}-${randomName}${fileExtName}`)
-}
-
-export const imageFileFilter = (req, file, callback) => {
-  if (!file.originalname.match(/\.(jpg|jpeg|png|gif)$/)) {
-    return callback(new Error('Only image files are allowed!'), false)
-  }
-  callback(null, true)
-}
 
 @ApiTags('brands')
 @ApiExtraModels(ResponseOneDto, ResponseManyDto, Brand)
