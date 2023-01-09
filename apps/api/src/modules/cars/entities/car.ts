@@ -25,6 +25,14 @@ export class Car {
   @ApiProperty({ example: 'รถใหม่' })
   condition: CarCondition
 
+  @Column({ type: 'text' })
+  @ApiProperty({ example: '<url>' })
+  image: string
+
+  @Column({ type: 'text', array: true })
+  @ApiProperty({ example: ['<url>', '<url>'] })
+  previewImages: string[]
+
   @ManyToOne(() => Brand, (brand) => brand.cars)
   @ApiProperty({ example: 'mazda' })
   brand: Brand

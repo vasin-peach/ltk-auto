@@ -1,7 +1,9 @@
-import { Injectable } from '@nestjs/common'
+import { Injectable, NotFoundException } from '@nestjs/common'
 import { InjectRepository } from '@nestjs/typeorm'
 import { MetaDto } from 'src/common/dto/response.dto'
 import { FindOptionsWhere, Repository } from 'typeorm'
+import { BrandsService } from '../brand/brands.service'
+import { Brand } from '../brand/entities/brand'
 import { CreateCarDto } from './dto/create.dto'
 import { UpdateCarDto } from './dto/update.dto'
 import { Car } from './entities/car'
@@ -11,10 +13,21 @@ export class CarsService {
   constructor(
     @InjectRepository(Car)
     private carsRepository: Repository<Car>,
+    private brandsService: BrandsService,
   ) {}
 
-  async create(createCarDto: CreateCarDto) {
-    return true
+  async create(createDto: CreateCarDto) {
+    const brand = await this.brandsService.findOne({
+      name: createDto.brand as any,
+    })
+
+    if (!brand)
+      throw new NotFoundException({
+        error: [`brand name ${createDto.brand} is not exist.`],
+      })
+
+    const data = await this.carsRepository.save({ ...createDto, brand: brand })
+    return data
   }
 
   async findAll(meta?: MetaDto) {

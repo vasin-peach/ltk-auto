@@ -1,6 +1,7 @@
 import { CarBody, CarCondition, CarFuel } from '@libs/constant'
 import { ApiProperty } from '@nestjs/swagger'
 import {
+  IsArray,
   IsEmail,
   IsEnum,
   IsNotEmpty,
@@ -16,17 +17,20 @@ export class CreateCarDto {
   @ApiProperty({
     example: '<name>',
   })
-  readonly name: string
+  name: string
 
   @IsEnum(CarCondition)
   @IsOptional()
   @ApiProperty({ example: '<รถใหม่>', enum: CarCondition })
-  readonly condition?: CarCondition
+  condition?: CarCondition
+
+  image?: string
+  previewImages?: string[]
 
   @IsString()
   @IsOptional()
   @ApiProperty({ example: '<mazda>' })
-  readonly brand?: Brand
+  brand?: Brand
 
   // GENERAL
   @IsString()
