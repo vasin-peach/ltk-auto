@@ -30,9 +30,9 @@ export class StorageService {
     return new Promise((resolve, reject) => {
       const bucket = this.storage.bucket(bucketName)
       // Create file name
-      const imageName = `brand_${name}_image.${image.originalname
-        .split('.')
-        .pop()}`
+      const imageName = `${name.split(' ').join('-').toLowerCase()}_${crypto
+        .randomBytes(8)
+        .toString('hex')}.${image.originalname.split('.').pop()}`
 
       // Create file
       const file = bucket.file(imageName)
