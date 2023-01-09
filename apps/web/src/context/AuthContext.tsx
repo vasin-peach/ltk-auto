@@ -67,7 +67,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     if ((!query.access_token && !cookies.access_token) || accessToken) return
     singin((query.access_token || cookies.access_token) as string)
     router.replace('/', undefined, { shallow: true })
-  }, [router, query.access_token])
+  }, [router.isReady, query.access_token])
 
   const signout = async () => {
     if (cookies.access_token) removeCookie('access_token')
