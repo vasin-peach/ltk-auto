@@ -66,7 +66,9 @@ export class StorageService {
     return new Promise(async (resolve, reject) => {
       try {
         const bucket = this.storage.bucket(bucketName)
-        await bucket.file(name).delete({ ignoreNotFound: true, ...options })
+        await bucket
+          .file(name.split('/').pop())
+          .delete({ ignoreNotFound: true, ...options })
         resolve(true)
       } catch (e) {
         reject(e)
