@@ -54,9 +54,11 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
           headers: { Authorization: `Bearer ${accessToken}` },
         },
       )
+      if (stream.status !== 200) throw new Error()
       const res = await stream.json()
       setUser(res.data)
     } catch (e) {
+      console.log(e)
       signout()
     } finally {
       setLoading(false)
@@ -71,7 +73,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
   const signout = async () => {
     if (cookies.access_token) removeCookie('access_token')
-    if (user.id) setUser(defaultState.user)
+    if (user?.id) setUser(defaultState.user)
     if (accessToken) setAccessToken(undefined)
     router.push('/signin')
   }

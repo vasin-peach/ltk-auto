@@ -55,10 +55,10 @@ export default function Sidebar(props: CommonComponentProps) {
           onClick={() => setActive(false)}
         />
         <div className="sidebar-header rounded-xl bg-gradient-to-tr from-primary-500 to-primary-400 p-5">
-          {user && user.id ? (
+          {user?.id ? (
             <>
               <div className="header-avatar flex items-center">
-                {user.image ? (
+                {user?.image ? (
                   <Image
                     src={user.image}
                     alt="avatar-image"
@@ -72,7 +72,7 @@ export default function Sidebar(props: CommonComponentProps) {
 
                 <div className="flex w-full items-center justify-between">
                   <div className="ml-4 max-w-[100%] truncate text-xl font-bold text-black-900">
-                    {user.name}
+                    {user?.name}
                   </div>
                 </div>
               </div>
@@ -148,7 +148,7 @@ export default function Sidebar(props: CommonComponentProps) {
             ติดต่อเรา
           </Link>
 
-          {user.role >= RoleEnum.MAINTAINER && (
+          {user?.role >= RoleEnum.MAINTAINER && (
             <Link
               href="/dashboard"
               className={`rounded-lg border border-neutral-600 px-4 py-3 ${

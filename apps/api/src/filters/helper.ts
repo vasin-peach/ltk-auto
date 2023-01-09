@@ -24,20 +24,16 @@ export const createMessageName = (
         .toUpperCase()}`
     : undefined
 
-  console.log()
-
   const nameMsg = (name !== '' ? `_${name}` : '').toUpperCase()
   const actionMsg =
     exceptionMsg || (action ? `_${action[0]}` : '').toUpperCase()
   const paramMsg = (param ? `_BY_${param}` : '').toUpperCase()
-  const methodMsg =
-    name &&
-    (name === 'auth'
-      ? 'sign_in'
-      : ApiMethodEnum[method]
-      ? ApiMethodEnum[method]
-      : 'error'
-    )?.toUpperCase()
 
-  return `${methodMsg}${nameMsg}${paramMsg}${actionMsg}`
+  let methodMsg: string
+  if (name === 'auth') methodMsg = 'sigin'
+  else methodMsg = ApiMethodEnum[method]
+
+  return `${
+    methodMsg ? methodMsg?.toString()?.toUpperCase() : 'UNKNOWN'
+  }${nameMsg}${paramMsg}${actionMsg}`
 }

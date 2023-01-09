@@ -68,7 +68,7 @@ export default function Nav() {
                 <TiStarFullOutline />
               </div>
             </Link>
-            {user.id && !loading ? (
+            {user?.id && !loading ? (
               <div className="relative">
                 <button
                   id="profile-expand-desktop"
@@ -180,7 +180,7 @@ export default function Nav() {
             >
               ติดต่อเรา
             </Link>
-            {user.role >= RoleEnum.MAINTAINER && (
+            {user?.role >= RoleEnum.MAINTAINER && (
               <Link
                 href="/dashboard"
                 className={isRouteActive('dashboard') ? 'text-white' : ''}

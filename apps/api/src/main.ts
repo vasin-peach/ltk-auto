@@ -57,7 +57,7 @@ async function bootstrap() {
   if (process.env.NODE_ENV === 'production') {
     // app.use(csurf());
     app.use(helmet())
-    app.enableCors({ origin: process.env.CORS_ORIGIN })
+    app.enableCors({ origin: process.env.CLIENT_URL })
   } else {
     app.enableCors({ origin: 'http://localhost:3000' })
   }
