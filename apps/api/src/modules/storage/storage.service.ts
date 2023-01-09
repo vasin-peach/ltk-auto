@@ -62,6 +62,16 @@ export class StorageService {
     })
   }
 
+  async uploadMultipleImage(
+    name: string,
+    bucketName: string,
+    images: Express.Multer.File[],
+  ) {
+    return await Promise.all(
+      images.map(async (image) => this.uploadImage(name, bucketName, image)),
+    )
+  }
+
   async removeImage(name: string, bucketName: string, options?: DeleteOptions) {
     return new Promise(async (resolve, reject) => {
       try {
