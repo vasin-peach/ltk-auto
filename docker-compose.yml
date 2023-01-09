@@ -25,7 +25,7 @@ services:
   #     - proxy
 
   web:
-    image: my-web/web
+    image: ltkauto/web
     build:
       context: .
       dockerfile: ./apps/web/Dockerfile
@@ -35,7 +35,7 @@ services:
     restart: always
 
   api:
-    image: my-web/api
+    image: ltkauto/api
     build:
       context: .
       dockerfile: ./apps/api/Dockerfile
@@ -47,6 +47,8 @@ services:
       - apps/api/.env
     depends_on:
       - postgres
+    environment:
+      POSTGRES_HOST: postgres
 
   postgres:
     image: postgres:alpine
