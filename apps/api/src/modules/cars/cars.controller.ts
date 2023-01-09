@@ -12,6 +12,7 @@ import {
   BadRequestException,
   BadGatewayException,
   NotFoundException,
+  Delete,
 } from '@nestjs/common'
 import {
   ApiBearerAuth,
@@ -240,27 +241,27 @@ export class CarsController {
     return { data }
   }
 
-  // /* --------------------------------- Remove --------------------------------- */
-  // @Delete(':id')
-  // @UseGuards(JwtAuthGuard, RoleGuard)
-  // @Role(RoleEnum.MAINTAINER)
-  // @ApiOperation({ summary: 'Delete brand' })
-  // async remove(@Param('id') id: string) {
-  //   const data = await this.brandsService.remove(id)
-  //   if (!data) throw new NotFoundException()
+  /* --------------------------------- Remove --------------------------------- */
+  @Delete(':id')
+  @UseGuards(JwtAuthGuard, RoleGuard)
+  @Role(RoleEnum.MAINTAINER)
+  @ApiOperation({ summary: 'Delete car' })
+  async remove(@Param('id') id: string) {
+    const data = await this.carsService.remove(id)
+    if (!data) throw new NotFoundException()
 
-  //   await this.storageService
-  //     .removeImage(
-  //       data.image.split('/').pop(),
-  //       gcloudConstant.storage.bucket.brand,
-  //     )
-  //     .catch((e: any) => {
-  //       throw new BadRequestException({
-  //         error: e.message || e.error[0].errors,
-  //         errorCode: e.code,
-  //       })
-  //     })
+    await this.storageService
+      .removeImage(
+        data.image.split('/').pop(),
+        gcloudConstant.storage.bucket.brand,
+      )
+      .catch((e: any) => {
+        throw new BadRequestException({
+          error: e.message || e.error[0].errors,
+          errorCode: e.code,
+        })
+      })
 
-  //   return { data }
-  // }
+    return { data }
+  }
 }

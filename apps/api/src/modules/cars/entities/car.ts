@@ -1,5 +1,4 @@
 import { ApiProperty } from '@nestjs/swagger'
-import { Exclude } from 'class-transformer'
 import { Brand } from 'src/modules/brand/entities/brand'
 import { CarCondition, CarFuel, CarBody } from '@libs/constant'
 import {
@@ -33,9 +32,9 @@ export class Car {
   @ApiProperty({ example: ['<url>', '<url>'] })
   previewImages: string[]
 
-  @ManyToOne(() => Brand, (brand) => brand.cars)
+  @ManyToOne(() => Brand, (brand) => brand.cars, { onDelete: 'SET NULL' })
   @ApiProperty({ example: 'mazda' })
-  brand: Brand
+  brand?: Brand
 
   // GENERAL
   @Column()

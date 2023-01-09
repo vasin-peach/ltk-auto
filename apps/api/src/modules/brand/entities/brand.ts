@@ -27,7 +27,7 @@ export class Brand {
   @ApiProperty({ example: '<brand_image>' })
   image: string
 
-  @OneToMany(() => Car, (car) => car.brand)
+  @OneToMany(() => Car, (car) => car.brand, { onDelete: 'SET NULL' })
   cars: Car[]
 
   @CreateDateColumn()
