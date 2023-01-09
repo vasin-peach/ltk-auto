@@ -75,4 +75,16 @@ export class StorageService {
       }
     })
   }
+
+  removeMultipleImage(
+    names: string[],
+    bucketName: string,
+    options?: DeleteOptions,
+  ) {
+    return Promise.all(
+      names.map((name) => {
+        this.removeImage(name, bucketName, options)
+      }),
+    )
+  }
 }
