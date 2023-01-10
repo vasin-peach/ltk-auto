@@ -1,12 +1,12 @@
 .git
 
 # dependencies
-node_modules
-dist
+**/node_modules
+**/dist
 
 # next.js
-.next/
-out/
+**/.next/
+**/out/
 build
 
 # misc

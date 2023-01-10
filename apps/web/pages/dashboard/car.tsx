@@ -1,23 +1,9 @@
 import {
   ChangeEvent,
-  useCallback,
   useContext,
-  useEffect,
-  useMemo,
-  useState,
 } from 'react'
 import Layout from './layout'
-import cheverolet from 'src/assets/images/brands/cheverolet.png'
-import benz from 'src/assets/images/brands/benz.png'
-import bmw from 'src/assets/images/brands/bmw.png'
-import subaru from 'src/assets/images/brands/subaru.png'
-import toyota from 'src/assets/images/brands/toyota.png'
-import lexus from 'src/assets/images/brands/lexus.png'
-import nissan from 'src/assets/images/brands/nissan.png'
-import nyundai from 'src/assets/images/brands/nyundai.png'
-import porsche from 'src/assets/images/brands/porsche.png'
 import Car1 from 'src/assets/images/car1.png'
-import fetch from 'next'
 import { TiZoomOutline } from 'react-icons/ti'
 import {
   Checkbox,
@@ -76,21 +62,6 @@ export default function DashboardCar() {
   const handlePrice = (e: Event, val: number | number[]) => {
     setSelectPrices(val as number[])
   }
-
-  // const handler = useCallback([])
-
-  /* --------------------------------- Watches -------------------------------- */
-  useEffect(() => {
-    handleFetchCars()
-  }, [handleFetchCars])
-
-  useEffect(() => {
-    handleFetchBrands()
-  }, [])
-
-  // useEffect(() => {
-  //   handler()
-  // }, [selectSearch])
 
   /* ---------------------------------- Doms ---------------------------------- */
   return (

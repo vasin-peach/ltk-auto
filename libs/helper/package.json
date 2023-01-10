@@ -1,9 +1,6 @@
 {
   "name": "@libs/helper",
   "type": "commonjs",
-  "scripts": {
-    "build": "tsc"
-  },
   "dependencies": {
     "bcryptjs": "^2.4.3"
   },
